@@ -9,10 +9,13 @@ class Floor extends BaseGameObject {
 
 
     draw = function () {
+        global.ctx.fillStyle = "black";
+        global.ctx.fillRect(this.x, this.y, this.width, this.height);
     }
     
     constructor (x, y, width, height) {
         super(x, y, width, height);
+        // this.loadImages(["../images/stone.png"]);
     }
 }
 

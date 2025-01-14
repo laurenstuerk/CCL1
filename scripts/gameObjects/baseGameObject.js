@@ -87,14 +87,23 @@ class BaseGameObject {
             if (otherObject.active == true && otherObject.blockGravityForces == true) {
                 let collisionHappened = global.detectBoxCollision(this, otherObject);
                 if (collisionHappened) {
-                    if (this.physicsData.fallVelocity > 0) {
+                    if (this.physicsData.fallVelocity > 0 && this.getBoxBounds().bottom >= otherObject.getBoxBounds().top) {
                         this.physicsData.isGrounded = true;
                         this.physicsData.remainingJumps = this.physicsData.maxJumps;
-                        this.y = otherObject.getBoxBounds().top - this.height - (this.getBoxBounds().bottom - (this.y + this.height)) - 0.1;
+                        this.y = this.previousY;
                     }
                     else if (this.physicsData.fallVelocity < 0) {
                         this.y = otherObject.getBoxBounds().bottom + 0.1;
                     }
+                    // Ground Collision
+                    // if (this.getBoxBounds().bottom >= otherObject.getBoxBounds().top) {
+                    //     this.y = otherObject.getBoxBounds().top - this.height - (this.getBoxBounds().bottom - (this.y + this.height)) - 0.1;
+                    //     this.physicsData.isGrounded = true;
+                    //     console.log("ground collision");
+                    // } else if (this.getBoxBounds().top <= otherObject.getBoxBounds().bottom) {
+                    //     this.y = otherObject.getBoxBounds().bottom + 0.1;
+                    //     console.log("ceiling collision");
+                    // }
                     this.physicsData.jumpForce = 0;
                     this.physicsData.fallVelocity = 0;
                 }

@@ -6,12 +6,16 @@ global.prevTotalRunningTime = 0;
 global.deltaTime = 0;
 global.allGameObjects = [];
 global.playerObject = {};
-global.backgroundShift = 0;
-global.backgroundMaxShift = -600;
+global.backgroundShiftX = 0;
+global.backgroundMaxShiftX = -100000;
+global.backgroundShiftY = -1000;
+global.backgroundMaxShiftY = 10000;
 global.gravityForce = 9.8;
 global.pixelToMeter = 100;
 global.leftMoveTrigger;
 global.rightMoveTrigger;
+global.topMoveTrigger;
+global.bottomMoveTrigger;
 
 global.getCanvasBounds = function () {
     let bounds = {
@@ -24,6 +28,7 @@ global.getCanvasBounds = function () {
 }
 
 global.checkCollisionWithAnyOther = function (givenObject) {
+
     for (let i = givenObject.index; i < global.allGameObjects.length; i++) {
         let otherObject = global.allGameObjects[i];
         if (otherObject.active == true) {

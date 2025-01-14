@@ -5,31 +5,34 @@ class MoveTrigger extends BaseGameObject {
     backGroundDiv = null;
 
     update = function () {
-        this.backGroundDiv.style.backgroundPositionX = global.backgroundShift + "px";
-        global.canvas.style.marginLeft =  global.backgroundShift  + "px";
+        this.backGroundDiv.style.backgroundPositionX = global.backgroundShiftX + "px";
+        global.canvas.style.marginLeft = global.backgroundShiftX + "px";
     }
 
     draw = function () {
-    //    global.ctx.fillRect(this.x, this.y, this.width, this.height);
+        global.ctx.fillRect(this.x, this.y, this.width, this.height);
     }
 
-    reactToCollision = function (collidingObject)   {
+    reactToCollision = function (collidingObject) {
         if (collidingObject.name == "Player") {
-            let shiftBy = collidingObject.xVelocity * global.deltaTime;
-            global.backgroundShift += shiftBy * -1;
+            let shiftByX = collidingObject.xVelocity * global.deltaTime;
+            global.backgroundShiftX += shiftByX * -1;
 
-            if (global.backgroundShift < global.backgroundMaxShift) {
-                global.backgroundShift = global.backgroundMaxShift;
+            if (global.backgroundShiftX < global.backgroundMaxShiftX) {
+                global.backgroundShiftX = global.backgroundMaxShiftX;
                 collidingObject.x = collidingObject.previousX;
             }
-            else if (global.backgroundShift > 0) {
-                global.backgroundShift = 0;
+            else if (global.backgroundShiftX > 0) {
+                global.backgroundShiftX = 0;
                 collidingObject.x = collidingObject.previousX;
             }
             else {
-                global.leftMoveTrigger.x += shiftBy;
-                global.rightMoveTrigger.x += shiftBy;
+                global.leftMoveTrigger.x += shiftByX;
+                global.rightMoveTrigger.x += shiftByX;
+                // global.topMoveTrigger.x += shiftByX;
+                // global.bottomMoveTrigger.x += shiftByX;
             }
+
         }
 
     }
@@ -41,4 +44,4 @@ class MoveTrigger extends BaseGameObject {
     }
 }
 
-export {MoveTrigger}
+export { MoveTrigger }
