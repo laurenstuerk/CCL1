@@ -19,18 +19,7 @@ class Block extends BaseGameObject {
         }
     }
 
-    loadImages = function (imageSources) {
-        /* first load images from path */
 
-        for (let i = 0; i < imageSources.length; i++) {
-            let image = new Image();
-            image.src = "../images/stone.png";
-
-            /* after images have been loaded, they are added to an array that consists of each single sprite for our animation */
-            this.animationData.animationSprites.push(image);
-        }
-
-    };
 
     // draw = function() {
     //     global.ctx.fillStyle = "black";

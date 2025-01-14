@@ -17,6 +17,18 @@ global.rightMoveTrigger;
 global.topMoveTrigger;
 global.bottomMoveTrigger;
 
+global.camera = {
+    x: 0,
+    y: 0,
+}
+global.ScrollPostRight = 300;
+global.ScrollPostTop = 200;
+global.ScrollPostBottom = 600;
+
+
+
+
+
 global.getCanvasBounds = function () {
     let bounds = {
         "left": 0,

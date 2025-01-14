@@ -1,7 +1,7 @@
 import { global } from "./global.js";
 import { Block } from "../gameObjects/block.js";
 import { Player } from "../gameObjects/player.js";
-import { MoveTrigger } from "../gameObjects/moveTrigger.js";
+// import { MoveTrigger } from "../gameObjects/moveTrigger.js";
 // import { MoveTriggerY } from "../gameObjects/moveTriggerY.js";
 import { Floor } from "../gameObjects/floor.js";
 import { map } from "./map.js";
@@ -13,6 +13,23 @@ function gameLoop(totalRunningTime) {
     global.prevTotalRunningTime = totalRunningTime; // Save the current state of "totalRunningTime", so at the next call of gameLoop (== next frame) to calculate deltaTime again for that next frame.
     global.ctx.clearRect(0, 0, global.canvas.width, global.canvas.height); // Completely clear the canvas for the next graphical output 
 
+    // Track scroll post distance
+    if (global.playerObject.x > global.ScrollPostRight) {
+        const scrollPostDistance = global.playerObject.x - global.ScrollPostRight;
+        global.camera.x = scrollPostDistance;
+    }
+    if (global.playerObject.y < global.ScrollPostTop && global.playerObject.y > 0) {
+        const scrollPostDistance = global.ScrollPostTop - global.playerObject.y;
+        global.camera.y = scrollPostDistance;
+    }
+    if (global.playerObject.y > global.ScrollPostBottom) {
+        const scrollPostDistance = global.playerObject.y - global.ScrollPostBottom;
+        global.camera.y = -scrollPostDistance;
+    }
+    global.ctx.save();
+    global.ctx.translate(-global.camera.x, global.camera.y);
+    // global.ctx.drawImage()
+
     for (var i = 0; i < global.allGameObjects.length; i++) { //loop in the (game)loop -> the gameloop is continous anyways.. and on every cylce we do now loop through all objects to execute several operations (functions) on each of them: update, draw, collision detection, ...
         if (global.allGameObjects[i].active == true) {
             global.allGameObjects[i].storePositionOfPreviousFrame();
@@ -22,18 +39,19 @@ function gameLoop(totalRunningTime) {
             global.allGameObjects[i].draw();
         }
     }
+    global.ctx.restore()
 
     requestAnimationFrame(gameLoop); // This keeps the gameLoop running indefinitely
 }
 
 function setupGame() {
     console.log("Game setup");
-    global.playerObject = new Player(300, 500 , 65, 95);
+    global.playerObject = new Player(300, 500, 65, 95);
     // new Floor(0, 660, 9000, 40);
     // new Block(10, 300, 300, 50);
     // new Block(600, 300, 50, 500);
-    global.leftMoveTrigger = new MoveTrigger(200, -300, 20, 1500, 100);
-    global.rightMoveTrigger = new MoveTrigger(800, -300, 20, 1500, -100);
+    // global.leftMoveTrigger = new MoveTrigger(200, -300, 20, 1500, 100);
+    // global.rightMoveTrigger = new MoveTrigger(800, -300, 20, 1500, -100);
     // global.topMoveTrigger = new MoveTriggerY(200, 350, 600, 20);
     // global.bottomMoveTrigger = new MoveTriggerY(200, 650, 600, 20);
 
@@ -48,9 +66,9 @@ function setupGame() {
 
     // Generate World Map
     console.log(map.world);
-    for (let i= 0; i <map.world.length; i++) {
+    for (let i = 0; i < map.world.length; i++) {
         let innerArray = map.world[i];
-        for  (let j = 0; j < innerArray.length; j++) {
+        for (let j = 0; j < innerArray.length; j++) {
             if (innerArray[j] !== 0) {
                 new Block(j * 50, i * 50, 50, 50);
 

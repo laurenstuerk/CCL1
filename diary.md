@@ -1,4 +1,4 @@
-# Diary Entry No. 1
+# Devlog No. 1
 
 Today marks the first day of my journey in creating a video game for the Creative Code Lab. Here’s what I accomplished:
 
@@ -7,7 +7,7 @@ Today marks the first day of my journey in creating a video game for the Creativ
 
 2. **Implemented a Character**  
    - Set up basic player movement using keyboard input.  
-   - Added a jump mechanic, which felt like a big milestone.
+   - Added a jump mechanic
   
 3. **Optimized Jump Physics and Added Double Jump**  
    - Adjusted the jump mechanics to feel more responsive.  
@@ -24,3 +24,13 @@ Today marks the first day of my journey in creating a video game for the Creativ
 6. **Set Up the Floor and Side-Scrolling Elements**  
    - Implemented a floor for the character to stand on.  
    - Made the camera follow the character while the world scrolles.  
+
+# Devlog No. 2
+
+Today was a challenging but rewarding day. Bugs gave me a hard time, but I managed to squash them all and add some exciting new features:  
+
+- **World Generation:** Implemented a world generation array, so I no longer have to manually place every block.  
+- **Collision Fixes:** Resolved a bug where the player would glitch on top of platforms. Collisions now work perfectly.  
+- **Canvas Movement:** Fixed the issue of the canvas moving with the player in all directions. I removed the unnecessary move triggers and implemented a proper canvas transform system.  
+
+Despite the struggles, it feels great to see the game evolving!  
