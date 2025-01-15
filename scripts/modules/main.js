@@ -1,10 +1,11 @@
 import { global } from "./global.js";
 import { Block } from "../gameObjects/block.js";
 import { Player } from "../gameObjects/player.js";
-// import { MoveTrigger } from "../gameObjects/moveTrigger.js";
-// import { MoveTriggerY } from "../gameObjects/moveTriggerY.js";
-import { Floor } from "../gameObjects/floor.js";
-import { map } from "./map.js";
+import { map } from "../maps/map.js";
+import { Monster } from "../gameObjects/monster.js";
+import { Coin } from "../gameObjects/coin.js";
+import { GrasBlock } from "../gameObjects/grasBlock.js";
+import { Blocker } from "../gameObjects/blocker.js";
 
 
 function gameLoop(totalRunningTime) {
@@ -47,35 +48,30 @@ function gameLoop(totalRunningTime) {
 function setupGame() {
     console.log("Game setup");
     global.playerObject = new Player(300, 500, 65, 95);
-    // new Floor(0, 660, 9000, 40);
-    // new Block(10, 300, 300, 50);
-    // new Block(600, 300, 50, 500);
-    // global.leftMoveTrigger = new MoveTrigger(200, -300, 20, 1500, 100);
-    // global.rightMoveTrigger = new MoveTrigger(800, -300, 20, 1500, -100);
-    // global.topMoveTrigger = new MoveTriggerY(200, 350, 600, 20);
-    // global.bottomMoveTrigger = new MoveTriggerY(200, 650, 600, 20);
+    new Coin(400, 500, 50, 50);
+    new Monster(1800, 500, 100, 100);
 
-    // new BlockObject(300, 400, 50, 50);
-    // setup your game here - means: Create instances of the GameObjects that belong to your game.
-    // e.g.: 
-    /*    
-                global.playerObject = new PacMan(200, 300, 60, 60);
-                new Wall(0, 0, 100, 100);
-                new Candy(100, 100, 100, 100);
-    }*/
 
     // Generate World Map
     console.log(map.world);
     for (let i = 0; i < map.world.length; i++) {
         let innerArray = map.world[i];
         for (let j = 0; j < innerArray.length; j++) {
-            if (innerArray[j] !== 0) {
+            if (innerArray[j] === 1) {
                 new Block(j * 50, i * 50, 50, 50);
 
             }
+            if (innerArray[j] === 2) {
+                new GrasBlock(j * 50, i * 50, 50, 50);
+            }
+            if (innerArray[j] === 3) {
+                new Coin(j * 50, i * 50, 50, 50);
+            }
+            if (innerArray[j] === 4) {
+                new Blocker(j * 50, i * 50, 50, 50);
+            }
         }
     }
-
 }
 
 setupGame();

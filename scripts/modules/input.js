@@ -76,69 +76,12 @@ function stop(event) {
 function updateVelocity() {
     if (activeKey === "d") {
         global.playerObject.xVelocity = 500;
+        global.playerObject.switchCurrentSprites(5, 20);
     } else if (activeKey === "a") {
         global.playerObject.xVelocity = -500;
+        global.playerObject.switchCurrentSprites(5, 20);
     } else {
         global.playerObject.xVelocity = 0; // Stop movement if no keys are active
+        global.playerObject.switchCurrentSprites(0, 3);
     }
 }
-
-
-// ========================================
-// let Apressed = false;
-// let Dpressed = false;
-
-// function move(event) {
-
-//     //Example Movement
-//     switch (event.key) {
-//         case "d":
-//             if (true)
-//                 Dpressed = true;
-//             break;
-//         case "a":
-//             if (true)
-//                 Apressed = true;
-//             break;
-//         case " ":
-//             global.playerObject.setJumpForce(3);
-//             break;
-//     }
-//     if (Apressed) {
-//         global.playerObject.xVelocity = -500;
-//     } else if (Dpressed) {
-//         global.playerObject.xVelocity = 500;
-//     }
-//     if (Apressed && Dpressed) {
-//         global.playerObject.xVelocity = 0;
-//     }
-// }
-
-
-
-// function stop(event) {
-//     switch (event.key) {
-//         case "d":
-//             Dpressed = false;
-//             break;
-//         case "a":
-//             Apressed = false;
-//             break;
-//     }
-
-//     if (!Apressed && Dpressed) {
-//         global.playerObject.xVelocity = 500;
-//     }
-//     if (Apressed && !Dpressed) {
-//         global.playerObject.xVelocity = -500;
-//     }
-//     if (!Apressed && !Dpressed) {
-//         global.playerObject.xVelocity = 0;
-//     }
-
-// }
-
-
-
-
-

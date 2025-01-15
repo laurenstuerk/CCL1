@@ -17,20 +17,29 @@ class Player extends BaseGameObject {
         "remainingJumps": 2, // Allows double jump by default
         "maxJumps": 2        // Maximum number of jumps
     }
+    animationData = {
+        "animationSprites": [],
+        "timePerSprite": 0.08,
+        "currentSpriteElapsedTime": 0,
+        "firstSpriteIndex": 20,
+        "lastSpriteIndex": 0,
+        "currentSpriteIndex": 0
+    };
 
     update = function() {
         this.x += this.xVelocity * global.deltaTime;
         this.y += this.yVelocity * global.deltaTime;
-        // if (this.xVelocity == 0) {
-        //     global.playerObject.switchCurrentSprites(this.animationData.firstSpriteIndex, this.animationData.firstSpriteIndex);
-        // }
+        if (this.xVelocity == 0) {
+            // global.playerObject.switchCurrentSprites(this.animationData.firstSpriteIndex, this.animationData.firstSpriteIndex);
+        }
     }
 
     constructor(x, y, width, height) {
         super(x, y, width, height);
         console.log("Player created");
         // this.loadImages(["../images/player.png"]);
-        this.loadImagesFromSpritesheet("../images/player.png", 1, 1);
+        this.loadImagesFromSpritesheet("images/CharacterSpriteSheet.png", 21, 1);
+        this.switchCurrentSprites(0, 3);
     }
 }
 

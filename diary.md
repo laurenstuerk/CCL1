@@ -34,3 +34,18 @@ Today was a challenging but rewarding day. Bugs gave me a hard time, but I manag
 - **Canvas Movement:** Fixed the issue of the canvas moving with the player in all directions. I removed the unnecessary move triggers and implemented a proper canvas transform system.  
 
 Despite the struggles, it feels great to see the game evolving!  
+
+# Devlog No. 3
+
+
+markdown
+Copy code
+# Diary Entry No. 3  
+
+Today's update to the game:  
+
+- **Enemy and Coin Classes:** Added functionality for enemies (monsters) and collectible coins.  
+- **World Generation:** Created a large array to auto-generate the world with various blocks, barriers, and coins. Unfortunately, this caused performance issues that need optimization.  
+- **Custom Sprite Sheet:** Implemented my self-drawn, animated character sprite sheet.
+
+Progress is steady, and the game is starting to take shape!

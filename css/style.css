@@ -3,6 +3,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 95vh;
+    background-color: #333333;
 }
 #gameContainer {
     width: 1280px;
