@@ -1,4 +1,5 @@
 import { global } from "./global.js";
+import { Projectile } from "../gameObjects/projectile.js";
 
 
 // document.addEventListener("keypress", move);
@@ -43,6 +44,7 @@ let fallbackKey = null; // The previous key to fall back to when activeKey is re
 
 document.addEventListener("keydown", move);
 document.addEventListener("keyup", stop);
+window.addEventListener("mousedown", shoot);
 
 function move(event) {
     const key = event.key;
@@ -58,6 +60,7 @@ function move(event) {
 
     if (key === " ") {
         global.playerObject.setJumpForce(3); // Handle jump
+        // global.playerObject.switchCurrentSprites(2, 2);
     }
 }
 
@@ -79,9 +82,31 @@ function updateVelocity() {
         global.playerObject.switchCurrentSprites(5, 20);
     } else if (activeKey === "a") {
         global.playerObject.xVelocity = -500;
-        global.playerObject.switchCurrentSprites(5, 20);
+        global.playerObject.switchCurrentSprites(21, 36);
     } else {
         global.playerObject.xVelocity = 0; // Stop movement if no keys are active
         global.playerObject.switchCurrentSprites(0, 3);
     }
 }
+
+
+function shoot(event) {
+    if (event.button === 0) {
+        const rect = global.canvas.getBoundingClientRect()
+
+        const mouseX = event.clientX - rect.left;
+        const mouseY = event.clientY - rect.top;
+
+        const targetX = mouseX + global.playerObject.x - global.canvas.width/100;
+        const targetY = mouseY + global.playerObject.y - global.canvas.height/2;
+
+        // const targetX = event.clientX;	
+        // const targetY = event.clientY;
+        console.log(`ClickEvent coordinates: x: ${event.clientX}, y: ${event.clientY}`);
+        console.log(`Camera coordinates: x: ${global.camera.x}, y: ${global.camera.y}`);
+        console.log(`shoot at x: ${targetX}, y: ${targetY}`);
+        new Projectile(global.playerObject.x + global.playerObject.width / 2, global.playerObject.y +
+            global.playerObject.height / 2, 10, 10, targetX, targetY);
+    }
+}
+

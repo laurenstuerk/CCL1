@@ -216,6 +216,9 @@ class BaseGameObject {
     reactToCollision = function (collidingObject) {
 
     }
+    destroy() {
+        this.active = false;
+    }
 
     constructor(x, y, width, height) {
         this.x = x;

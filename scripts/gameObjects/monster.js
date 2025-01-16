@@ -21,6 +21,10 @@ class Monster extends BaseGameObject {
             collidingObject.x = collidingObject.previousX;
             collidingObject.y = collidingObject.previousY;
         }
+
+        if (collidingObject.name == "Projectile") {
+            this.active = false;
+        }
     }
 
     constructor(x, y, width, height) {

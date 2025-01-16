@@ -6,6 +6,7 @@ import { Monster } from "../gameObjects/monster.js";
 import { Coin } from "../gameObjects/coin.js";
 import { GrasBlock } from "../gameObjects/grasBlock.js";
 import { Blocker } from "../gameObjects/blocker.js";
+import { HolyBeer } from "../gameObjects/HolyBeer.js";
 
 
 function gameLoop(totalRunningTime) {
@@ -27,6 +28,7 @@ function gameLoop(totalRunningTime) {
         const scrollPostDistance = global.playerObject.y - global.ScrollPostBottom;
         global.camera.y = -scrollPostDistance;
     }
+
     global.ctx.save();
     global.ctx.translate(-global.camera.x, global.camera.y);
     // global.ctx.drawImage()
@@ -50,6 +52,7 @@ function setupGame() {
     global.playerObject = new Player(300, 500, 65, 95);
     new Coin(400, 500, 50, 50);
     new Monster(1800, 500, 100, 100);
+    new HolyBeer(2800, 1780, 92, 123);
 
 
     // Generate World Map
@@ -57,18 +60,18 @@ function setupGame() {
     for (let i = 0; i < map.world.length; i++) {
         let innerArray = map.world[i];
         for (let j = 0; j < innerArray.length; j++) {
-            if (innerArray[j] === 1) {
-                new Block(j * 50, i * 50, 50, 50);
+            // if (innerArray[j] === 1) {
+            //     new Block(j * 50, i * 50, 50, 50);
 
-            }
+            // }
             if (innerArray[j] === 2) {
-                new GrasBlock(j * 50, i * 50, 50, 50);
+                new GrasBlock(j * 100, i * 100, 100, 100);
             }
-            if (innerArray[j] === 3) {
-                new Coin(j * 50, i * 50, 50, 50);
-            }
+            // if (innerArray[j] === 3) {
+            //     new Coin(j * 100, i * 100, 100, 100);
+            // }
             if (innerArray[j] === 4) {
-                new Blocker(j * 50, i * 50, 50, 50);
+                new Blocker(j * 100, i * 100, 100, 100);
             }
         }
     }

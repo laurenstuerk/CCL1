@@ -14,23 +14,31 @@ class Player extends BaseGameObject {
         "prevFallingVelocity": 10,
         "jumpForceDecay": 2,
         "isGrounded": false,
-        "remainingJumps": 2, // Allows double jump by default
-        "maxJumps": 2        // Maximum number of jumps
+        "remainingJumps": 1, // Allows double jump by default
+        "maxJumps": 1        // Maximum number of jumps
     }
     animationData = {
         "animationSprites": [],
-        "timePerSprite": 0.08,
+        "timePerSprite": 0.1,
         "currentSpriteElapsedTime": 0,
-        "firstSpriteIndex": 20,
+        "firstSpriteIndex": 36,
         "lastSpriteIndex": 0,
         "currentSpriteIndex": 0
     };
 
     update = function() {
         this.x += this.xVelocity * global.deltaTime;
-        this.y += this.yVelocity * global.deltaTime;
-        if (this.xVelocity == 0) {
+        this.y += this.yVelocity * global.deltaTime
+        if (this.yVelocityVelocity == 0) {
             // global.playerObject.switchCurrentSprites(this.animationData.firstSpriteIndex, this.animationData.firstSpriteIndex);
+        }
+        document.getElementById("PositionDisplay").innerHTML = "X:" + Math.floor(global.playerObject.x) + " Y:" + Math.floor(global.playerObject.y);
+
+        const rect = global.canvas.getBoundingClientRect()
+        document.getElementById("DisplayCanvasPosition").innerHTML = "Canvas X:" + Math.floor(rect.left) + " Canvas Y:" + Math.floor(rect.top);
+        if (global.playerObject.x > 7000) {
+            window.location.reload();
+            
         }
     }
 
@@ -38,7 +46,7 @@ class Player extends BaseGameObject {
         super(x, y, width, height);
         console.log("Player created");
         // this.loadImages(["../images/player.png"]);
-        this.loadImagesFromSpritesheet("images/CharacterSpriteSheet.png", 21, 1);
+        this.loadImagesFromSpritesheet("images/fullCharacterSpriteSheet.png", 37, 1);
         this.switchCurrentSprites(0, 3);
     }
 }

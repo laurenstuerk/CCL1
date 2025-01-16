@@ -13,7 +13,6 @@ class Blocker extends BaseGameObject {
         // console.log(collidingObject.previousX);
         // console.log(collidingObject.previousY);
         if (collidingObject.name == "Player") {
-            console.log("Block collided with Player");
             collidingObject.x = collidingObject.previousX;
             collidingObject.y = collidingObject.previousY;
         }

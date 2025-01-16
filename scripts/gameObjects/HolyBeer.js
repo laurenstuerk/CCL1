@@ -1,40 +1,35 @@
 import { global } from "../modules/global.js";
 import { BaseGameObject } from "./baseGameObject.js";
 
-class Coin extends BaseGameObject {
+class HolyBeer extends BaseGameObject {
     xVelocity = 0;
     yVelocity = 0;
-    name = "Coin";
+    name = "HolyBeer";
     // blockGravityForces = true;
     animationData = {
         "animationSprites": [],
         "timePerSprite": 0.1,
         "currentSpriteElapsedTime": 0,
         "firstSpriteIndex": 0,
-        "lastSpriteIndex": 11,
+        "lastSpriteIndex": 19,
         "currentSpriteIndex": 0
     };
 
     reactToCollision = function (collidingObject) {
 
         if (collidingObject.name == "Player") {
-            console.log("Coin collected");
             this.active = false;
+            global.playerObject.holyBeerCount += 1;
+            global.playerObject.physicsData.maxJumps = 2
         }
     }
   
-    // update = function() {
-    //     console.log("Coin update");
-    // }
-
-
     constructor(x, y, width, height) {
         super(x, y, width, height);
 
-        this.loadImagesFromSpritesheet("../images/coin.png", 12, 1);
+        this.loadImagesFromSpritesheet("../images/HolyBeer.png", 20, 1);
+        this.switchCurrentSprites(0, 0);
     }
-
-
 }
 
-export { Coin }
+export { HolyBeer }

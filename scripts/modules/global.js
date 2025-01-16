@@ -6,27 +6,15 @@ global.prevTotalRunningTime = 0;
 global.deltaTime = 0;
 global.allGameObjects = [];
 global.playerObject = {};
-global.backgroundShiftX = 0;
-global.backgroundMaxShiftX = -100000;
-global.backgroundShiftY = -1000;
-global.backgroundMaxShiftY = 10000;
 global.gravityForce = 9.8;
 global.pixelToMeter = 100;
-global.leftMoveTrigger;
-global.rightMoveTrigger;
-global.topMoveTrigger;
-global.bottomMoveTrigger;
-
 global.camera = {
     x: 0,
     y: 0,
 }
 global.ScrollPostRight = 300;
 global.ScrollPostTop = 200;
-global.ScrollPostBottom = 600;
-
-
-
+global.ScrollPostBottom = 300;
 
 
 global.getCanvasBounds = function () {
@@ -68,16 +56,6 @@ global.detectBoxCollision = function (gameObject1, gameObject2) {
     return false;
 }
 
-// global.detectPlatformCollision = function (gameObject1, gameObject2) {
-//     let box1 = gameObject1.getBoxBounds();
-//     let box2 = gameObject2.getBoxBounds();
-//     if (gameObject1 != gameObject2) {
-//         if (box1.bottom >= box2.top) {
-//             return true;
-//         }
-//     }
-//     return false;
-// }
 
 
 export { global }
