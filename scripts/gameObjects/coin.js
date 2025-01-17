@@ -31,7 +31,7 @@ class Coin extends BaseGameObject {
     constructor(x, y, width, height) {
         super(x, y, width, height);
 
-        this.loadImagesFromSpritesheet("../images/coin.png", 12, 1);
+        this.loadImagesFromSpritesheet("./images/coin.png", 12, 1);
     }
 
 

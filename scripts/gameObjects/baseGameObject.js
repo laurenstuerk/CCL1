@@ -112,7 +112,6 @@ class BaseGameObject {
     };
 
     setJumpForce = function (jumpForce) {
-        console.log(this.physicsData.remainingJumps);
         if (this.physicsData.isGrounded || this.physicsData.remainingJumps > 0) {
             this.physicsData.jumpForce = jumpForce;
             this.physicsData.remainingJumps--;

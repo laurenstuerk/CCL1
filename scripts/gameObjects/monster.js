@@ -18,9 +18,9 @@ class Monster extends BaseGameObject {
     reactToCollision = function (collidingObject) {
 
         if (collidingObject.name == "Player") {
-            collidingObject.x = collidingObject.previousX;
-            collidingObject.y = collidingObject.previousY;
-        }
+            console.log("Player collided with Monster");
+            // this.active = false;
+        }d
 
         if (collidingObject.name == "Projectile") {
             this.active = false;
@@ -32,7 +32,7 @@ class Monster extends BaseGameObject {
         console.log(this.animationData.firstSpriteIndex)
         console.log(this.animationData.lastSpriteIndex)
 
-        this.loadImagesFromSpritesheet("../images/redMonster.png", 8, 1);
+        this.loadImagesFromSpritesheet("./images/redMonster.png", 8, 1);
     }
 
 

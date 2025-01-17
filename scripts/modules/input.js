@@ -90,6 +90,7 @@ function updateVelocity() {
 }
 
 
+
 function shoot(event) {
     if (event.button === 0) {
         const rect = global.canvas.getBoundingClientRect();
@@ -117,3 +118,4 @@ function shoot(event) {
         );
     }
 }
+ 

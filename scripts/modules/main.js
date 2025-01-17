@@ -1,7 +1,7 @@
 import { global } from "./global.js";
 import { Block } from "../gameObjects/block.js";
 import { Player } from "../gameObjects/player.js";
-import { map } from "../maps/map.js";
+import { map1 } from "../maps/map1.js";
 import { Monster } from "../gameObjects/monster.js";
 import { Coin } from "../gameObjects/coin.js";
 import { GrasBlock } from "../gameObjects/grasBlock.js";
@@ -49,21 +49,19 @@ function gameLoop(totalRunningTime) {
 
 function setupGame() {
     console.log("Game setup");
-    global.playerObject = new Player(300, 500, 65, 95);
     new Coin(400, 500, 50, 50);
-    new Monster(1800, 500, 100, 100);
+    new Monster(2200, 1100, 100, 100);
     new HolyBeer(2800, 1780, 92, 123);
-
+    global.playerObject = new Player(300, 500, 65, 95);
 
     // Generate World Map
-    console.log(map.world);
-    for (let i = 0; i < map.world.length; i++) {
-        let innerArray = map.world[i];
+    for (let i = 0; i < map1.world.length; i++) {
+        let innerArray = map1.world[i];
         for (let j = 0; j < innerArray.length; j++) {
-            // if (innerArray[j] === 1) {
-            //     new Block(j * 50, i * 50, 50, 50);
+            if (innerArray[j] === 1) {
+                new Block(j * 100, i * 100, 100, 100);
 
-            // }
+            }
             if (innerArray[j] === 2) {
                 new GrasBlock(j * 100, i * 100, 100, 100);
             }
@@ -75,6 +73,7 @@ function setupGame() {
             }
         }
     }
+
 }
 
 setupGame();

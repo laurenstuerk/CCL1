@@ -27,7 +27,7 @@ class HolyBeer extends BaseGameObject {
     constructor(x, y, width, height) {
         super(x, y, width, height);
 
-        this.loadImagesFromSpritesheet("../images/HolyBeer.png", 20, 1);
+        this.loadImagesFromSpritesheet("./images/HolyBeer.png", 20, 1);
         this.switchCurrentSprites(0, 0);
     }
 }
