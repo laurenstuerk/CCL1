@@ -92,21 +92,28 @@ function updateVelocity() {
 
 function shoot(event) {
     if (event.button === 0) {
-        const rect = global.canvas.getBoundingClientRect()
-
-        const mouseX = event.clientX - rect.left;
-        const mouseY = event.clientY - rect.top;
-
-        const targetX = mouseX + global.playerObject.x - global.canvas.width/100;
-        const targetY = mouseY + global.playerObject.y - global.canvas.height/2;
-
-        // const targetX = event.clientX;	
-        // const targetY = event.clientY;
-        console.log(`ClickEvent coordinates: x: ${event.clientX}, y: ${event.clientY}`);
-        console.log(`Camera coordinates: x: ${global.camera.x}, y: ${global.camera.y}`);
-        console.log(`shoot at x: ${targetX}, y: ${targetY}`);
-        new Projectile(global.playerObject.x + global.playerObject.width / 2, global.playerObject.y +
-            global.playerObject.height / 2, 10, 10, targetX, targetY);
+        const rect = global.canvas.getBoundingClientRect();
+        
+        //🆕 Calculate mouse position relative to canvas and adjust for camera position
+        const mouseX = event.clientX - rect.left + global.camera.x;
+        const mouseY = event.clientY - rect.top - global.camera.y;
+        
+        //🆕 Get player's center position
+        const playerCenterX = global.playerObject.x + global.playerObject.width / 2;
+        const playerCenterY = global.playerObject.y + global.playerObject.height / 2;
+        
+        //🆕 Calculate direction vector from player to mouse
+        const dx = mouseX - playerCenterX;
+        const dy = mouseY - playerCenterY;
+        
+        //🆕 Create new projectile from player's center position
+        new Projectile(
+            playerCenterX,
+            playerCenterY,
+            10,
+            10,
+            mouseX,
+            mouseY
+        );
     }
 }
-
