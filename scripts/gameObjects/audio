@@ -1,0 +1,12 @@
+import { BaseGameObject } from "./baseGameObject.js";
+import { global } from "../modules/global.js";
+
+class Audio extends BaseGameObject {
+
+    audio(src) {
+        const audio = new Audio(src);
+        audio.play();
+    }
+}
+
+export { Audio }

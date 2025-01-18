@@ -5,6 +5,7 @@ body {
     height: 95vh;
     background-color: #333333;
     font-family: Arial, Helvetica, sans-serif;
+    cursor: crosshair;
 }
 #gameContainer {
     width: 1280px;
@@ -32,10 +33,35 @@ body {
     top: 0;
     width: 1280px;
     height: 720px;
-    background-color: aqua;
+    background-color: rgb(0, 0, 0);
     background-image: url("../images/background.png");
     background-size: cover;
     z-index: -110;
 }
 
-/* add styles for other HTML elements of your game */
+#gameOverScreen{
+    position: fixed;
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    width: 	1280px;
+    height: 720px;
+    background-color: #00000087;
+    font-size: 50px;
+    color: red;
+}
+#gameOverScreen button{
+    font-size: 30px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: #000 solid 1px;
+    cursor: pointer;
+}
+#gameOverScreen button:hover{
+    background-color: #555;
+}
+

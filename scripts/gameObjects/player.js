@@ -25,8 +25,16 @@ class Player extends BaseGameObject {
         "lastSpriteIndex": 0,
         "currentSpriteIndex": 0
     };
+    reactToCollision = function (collidingObject) {
+        if (collidingObject.name == "Monster") {
+            console.log("Player collided with Monster");
+            global.gameOver = true;
 
-    update = function() {
+
+        }
+    }
+
+    update = function () {
         this.x += this.xVelocity * global.deltaTime;
         this.y += this.yVelocity * global.deltaTime
         if (this.yVelocityVelocity == 0) {
@@ -37,18 +45,23 @@ class Player extends BaseGameObject {
         const rect = global.canvas.getBoundingClientRect()
         document.getElementById("DisplayCanvasPosition").innerHTML = "Canvas X:" + Math.floor(rect.left) + " Canvas Y:" + Math.floor(rect.top);
         if (global.playerObject.x > 7000) {
-            window.location.reload();
-            
+            global.gameOver = true;
+            console.log("Game Over");
+
+        }
+        if (global.playerObject.y > 2000) {
+            global.gameOver = true;
+            console.log("Game Over");
+
         }
     }
 
     constructor(x, y, width, height) {
         super(x, y, width, height);
         console.log("Player created");
-        // this.loadImages(["../images/player.png"]);
         this.loadImagesFromSpritesheet("images/fullCharacterSpriteSheet.png", 37, 1);
         this.switchCurrentSprites(0, 3);
     }
 }
 
-export {Player}
+export { Player }

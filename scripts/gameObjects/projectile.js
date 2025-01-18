@@ -7,19 +7,20 @@ class Projectile extends BaseGameObject {
     yVelocity = 0;
 
     reactToCollision = function (collidingObject) {
-        if (collidingObject.name == "block" || collidingObject.name == "Enemy") {
+        if (collidingObject.name == "block" || collidingObject.name == "Monster") {
             collidingObject.active = false;
+            this.active = false;
         }
+        
     };
 
     update = function () {
         this.x += this.xVelocity;
         this.y += this.yVelocity;
-        // if (this.x < 0 || this.x > global.canvas.width ||
-        //     this.y < 0 || this.y > global.canvas.height) {
-        //     this.destroy();
-        //     console.log("Projectile destroyed");
+        // if (this.x < global.camera.x || this.x > global.camera.x + global.canvas.width || this.y < global.camera.y || this.y > global.camera.y + global.canvas.height) {
+        //     this.active = false;
         // }
+        
     };
 
 
@@ -27,7 +28,7 @@ class Projectile extends BaseGameObject {
 
 
     draw = function () {
-        global.ctx.fillStyle = "black";
+        global.ctx.fillStyle = "gold";
         global.ctx.fillRect(this.x, this.y, this.width, this.height);
     };
 

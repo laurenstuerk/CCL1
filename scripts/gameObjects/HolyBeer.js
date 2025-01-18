@@ -8,7 +8,7 @@ class HolyBeer extends BaseGameObject {
     // blockGravityForces = true;
     animationData = {
         "animationSprites": [],
-        "timePerSprite": 0.1,
+        "timePerSprite": 0.5,
         "currentSpriteElapsedTime": 0,
         "firstSpriteIndex": 0,
         "lastSpriteIndex": 19,
@@ -28,7 +28,6 @@ class HolyBeer extends BaseGameObject {
         super(x, y, width, height);
 
         this.loadImagesFromSpritesheet("./images/HolyBeer.png", 20, 1);
-        this.switchCurrentSprites(0, 0);
     }
 }
 

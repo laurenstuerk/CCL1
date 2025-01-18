@@ -40,3 +40,13 @@ Despite the struggles, it feels great to see the game evolving!
 - **Shooting Mechanic:** Added functionality to shoot towards the cursor's location on the canvas. It's not fully working yet due to canvas transformation issues.  
 - **Directional Sprites:** Updated the character to face the correct direction based on movement.  
 - **Holy Beer Item:** Introduced a collectible that activates double jump.  
+
+# Diary Entry No. 5  
+
+Today's progress:  
+
+- **Fixed Shooting:** Shooting now correctly targets the cursor.  
+- **New Enemies:** Added mines, defense towers, and a mini-boss class.  
+- **Main Menu:** Worked on the main menu and a restart function.  
+- **Parallax Background:** Started implementing parallax scrolling for the background.  
+- **Sound Effects:** Added sound for shooting and jumping.  

@@ -1,5 +1,4 @@
 const global = {};
-
 global.canvas = document.querySelector("#canvas");
 global.ctx = canvas.getContext("2d");
 global.prevTotalRunningTime = 0;
@@ -8,6 +7,13 @@ global.allGameObjects = [];
 global.playerObject = {};
 global.gravityForce = 9.8;
 global.pixelToMeter = 100;
+// global.cancelAnimationFrame = false;
+global.gameOver = false;
+
+// global.gameOver = function () {
+//     document.getElementById("gameOverScreen").style.display = "block";
+// }
+
 global.camera = {
     x: 0,
     y: 0,
@@ -28,7 +34,6 @@ global.getCanvasBounds = function () {
 }
 
 global.checkCollisionWithAnyOther = function (givenObject) {
-
     for (let i = givenObject.index; i < global.allGameObjects.length; i++) {
         let otherObject = global.allGameObjects[i];
         if (otherObject.active == true) {
@@ -54,6 +59,11 @@ global.detectBoxCollision = function (gameObject1, gameObject2) {
         }
     }
     return false;
+}
+
+global.audio = function(src) {
+    new Audio(src).play();
+    
 }
 
 

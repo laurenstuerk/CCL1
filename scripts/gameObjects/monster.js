@@ -16,26 +16,18 @@ class Monster extends BaseGameObject {
     };
 
     reactToCollision = function (collidingObject) {
-
         if (collidingObject.name == "Player") {
             console.log("Player collided with Monster");
-            // this.active = false;
-        }d
+            global.gameOver = true;
+            
 
-        if (collidingObject.name == "Projectile") {
-            this.active = false;
         }
     }
 
     constructor(x, y, width, height) {
         super(x, y, width, height);
-        console.log(this.animationData.firstSpriteIndex)
-        console.log(this.animationData.lastSpriteIndex)
-
         this.loadImagesFromSpritesheet("./images/redMonster.png", 8, 1);
     }
-
-
 }
 
 export { Monster }
