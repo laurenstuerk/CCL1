@@ -1,0 +1,94 @@
+@font-face {
+    font-family: "CommodoreAngled";
+    src: url('./stuff/CommodoreAngled.ttf') format('truetype');
+}
+
+:root {
+    --primary-color: #5e8106;
+    --secondary-color: #ffb300;
+    --btn-text: white;
+    --btn-disabled: #686B48;
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    font-family: "CommodoreAngled";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(stuff/cover.png);
+    background-size: cover;
+    background-position: center;
+}
+
+.menu {
+    text-align: center;
+    /* background: rgba(0, 0, 0, 0.5); */
+    filter: url(#noise);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu button {
+    width: max-content;
+}
+
+.menu:hover>img {
+    animation: pulse 800ms ease-in-out;
+    filter: url(#noise);
+}
+
+.menu h1 {
+    color: var(--btn-text);
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    color: var(--btn-text);
+    font-size: 2rem;
+    width: 200px;
+    font-family: "CommodoreAngled";
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+}
+
+button:disabled {
+    background-color: var(--btn-disabled);
+}
+
+
+#levelSelectMenu {
+    display: none;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    flex-direction: column;
+    gap: 10px;
+    /* Optional: Adds space between grid items */
+    justify-items: center;
+    /* Optional: Centers items horizontally */
+    align-items: center;
+    /* Optional: Centers items vertically */
+
+
+}

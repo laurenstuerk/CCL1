@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Beer</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="" />
+  <link rel="stylesheet" type="text/css" href="./css/style.css" />
+  <link rel="icon" href="./images/beer.png">
+</head>
+
+<body>
+
+  <div id="cutscene" style="display: none;">
+    <video id="cutsceneVideo" width="1280" height="720" autoplay>
+      <source src="cutScene/CutScene1.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <div id="gameContainer">
+    <canvas id="canvas" width="1280" height="720"></canvas>
+    <div id="background"></div>
+    <div id="PositionDisplay"></div>
+    <br>
+    <div id="DisplayCanvasPosition"></div>
+    <div id="gameOverScreen">
+      <img id="gameOverImage">
+      <button id="restartButton">Try again</button>
+      <button id="home">Home</button>
+    </div>
+
+  </div>
+  <!-- further HTML elements, that should maybe be displayed below your game. E.g. Score, .... -->
+  <!-- <div id="scoreDisplay">Score: </div> -->
+
+  <script type="module" src="./scripts/modules/global.js"></script>
+  <script type="module" src="./scripts/modules/input.js"></script>
+  <script type="module" src="./scripts/modules/main.js"></script>
+
+</body>
+
+</html>

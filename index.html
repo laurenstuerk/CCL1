@@ -1,39 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <title>Beer Run</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="" />
-  <link rel="stylesheet" type="text/css" href="./css/style.css" />
-  <link rel="icon" href="favicon.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beer</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <!-- further HTML elements, that should maybe be displayed above your game. E.g. Healtbar, .... -->
-  <!-- <div id="healthDisplay">Health:</div> -->
-  <div id="gameContainer">
-    <!-- further HTML elements, that should be behind your game. e.g. Background image, .... -->
 
-    <canvas id="canvas" width="1280" height="720"></canvas> 
-    <div id="background"></div>
-    <div id="PositionDisplay"></div>
-    <br>
-    <div id="DisplayCanvasPosition"></div>
-    <!-- change the size attributes of your canvas according to your game -->
-    <!-- further HTML elements, that should overlay your game. e.g. Main Screen, Game Over screen, .... -->
-    <div id="gameOverScreen">
-      <h1>Game Over</h1>
-      <button id="restartButton">Restart</button>
-      <button id="home">Home</button>
-    </div>
-    <!-- <div id="mainScreen"></div> -->
+  <div id="background"></div>
+  <div id="mainMenu" class="menu">
+    <button onclick="startGame()">Start Game</button>
   </div>
-  <!-- further HTML elements, that should maybe be displayed below your game. E.g. Score, .... -->
-  <!-- <div id="scoreDisplay">Score: </div> -->
 
-  <script type="module" src="./scripts/modules/global.js"></script>
-  <script type="module" src="./scripts/modules/input.js"></script>
-  <script type="module" src="./scripts/modules/main.js"></script>
-  
+  <div id="levelSelectMenu">
+    <button onclick="startLevel()">Level 1</button>
+    <button disabled onclick="startLevel()">Level 2</button>
+    <button disabled onclick="startLevel()">Level 3</button>
+    <button onclick="goBackToMainMenu()">Back</button>
+  </div>
+
+  <audio autoplay hidden loop>
+    <source src="./CutScenes/beerRun.mp3" type="audio/ogg">
+  </audio>
+
+  <script>
+    function startLevel(level) {
+      window.location.href = "./Game/index.html";
+
+    }
+    function startGame() {
+      document.getElementById('mainMenu').style.display = 'none';
+      document.getElementById('levelSelectMenu').style.display = 'flex';
+    }
+    function goBackToMainMenu() {
+      document.getElementById('levelSelectMenu').style.display = 'none';
+      document.getElementById('mainMenu').style.display = 'flex';
+    }
+  </script>
 </body>
+
 </html>

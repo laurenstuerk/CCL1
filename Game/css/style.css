@@ -1,0 +1,82 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+    background-color: #333333;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: crosshair;
+}
+
+#gameContainer {
+    width: 1280px;
+    height: 720px;
+    display: flex;
+    /* margin: auto auto; */
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #000;
+    /* add more styles if needed */
+    cursor: crosshair;
+}
+
+#canvas {
+    position: absolute;
+    top: 0;
+    left: 0%;
+    z-index: 1000;
+}
+
+
+#background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 720px;
+    background-color: rgb(0, 0, 0);
+    background-image: url("../images/background.png");
+    background-size: cover;
+    z-index: -110;
+}
+
+#gameOverScreen {
+    position: fixed;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+    gap: 20px;
+    z-index: 1000;
+    width: 1280px;
+    height: 720px;
+    background-color: #00000087;
+    font-size: 50px;
+    color: red;
+    background-image: url(../images/background.png);
+    background-clip: border-box;
+}
+
+#gameOverScreen button {
+    width: 200px;
+    height: max-content;
+    font-size: 30px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: #000 solid 1px;
+    cursor: pointer;
+    margin-left: 500px;
+}
+
+#gameOverScreen button:hover {
+    background-color: #555;
+}
+
+#gameOverScreen img {
+    position: absolute;
+    width: 100%;
+    height:100%;
+    z-index: -1;
+
+}
