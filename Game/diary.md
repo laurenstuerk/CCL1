@@ -61,9 +61,6 @@ Today's progress:
 - **Sound Effects:** Added sound for shooting and jumping.  
 
 
-markdown
-Copy
-Edit
 # Diary Entry No. 6  
 
 This day (plus the weekend) brought some updates:  
@@ -71,4 +68,13 @@ This day (plus the weekend) brought some updates:
 - **Main Menu:** Created a new main menu with level selection and a level manager (still in progress).  
 - **Level Loading:** Worked on proper level loading with the start game setup.  
 - **Game Restart:** Faced challenges stopping and restarting the requestAnimationFrame for a proper game reset.  
-- **New Game Objects:** Added land mines and defense towers that can shoot and kill the player.  
+- **New Game Objects:** Added landmines and defense towers that can shoot and kill the player.  
+
+# Diary Entry No. 7  
+
+Today’s progress:  
+
+- **Main Menu Fixes:** With help, fixed level selection and added functionality to play corresponding cutscenes.  
+- **First Level:** Designed the final first level and implemented all necessary game objects.  
+- **New Sprites:** Created and added new object and sprites.  
+- **Second Cutscene:** Started working on the second cutscene.  

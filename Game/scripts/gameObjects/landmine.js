@@ -5,7 +5,6 @@ class Landmine extends BaseGameObject {
     xVelocity = 0;
     yVelocity = 0;
     name = "Landmine";
-    blockGravityForces = true;
     shootTimer = 0;
 
     animationData = {
@@ -20,6 +19,7 @@ class Landmine extends BaseGameObject {
     reactToCollision = function (collidingObject) {
         if (collidingObject.name == "Player") {
             console.log("Player collided with Mine");
+            global.audio("./audio/russian_explosion.mp3");
             global.gameOver = true;
         }
     }

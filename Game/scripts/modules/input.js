@@ -40,10 +40,10 @@ function stop(event) {
 
 function updateVelocity() {
     if (activeKey === "d") {
-        global.playerObject.xVelocity = 500;
+        global.playerObject.xVelocity = 600;
         global.playerObject.switchCurrentSprites(5, 20);
     } else if (activeKey === "a") {
-        global.playerObject.xVelocity = -500;
+        global.playerObject.xVelocity = -600;
         global.playerObject.switchCurrentSprites(21, 36);
     } else {
         global.playerObject.xVelocity = 0; // Stop movement if no keys are active

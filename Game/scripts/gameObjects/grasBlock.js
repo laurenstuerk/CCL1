@@ -15,7 +15,15 @@ class GrasBlock extends BaseGameObject {
             collidingObject.y = collidingObject.previousY;
         }
     }
-
+    getBoxBounds = function () {
+        let bounds = {
+            left: this.x,
+            right: this.x + this.width,
+            top: this.y + 25,
+            bottom: this.y + this.height
+        }
+        return bounds;
+    };
 
 
     // draw = function() {
@@ -25,7 +33,7 @@ class GrasBlock extends BaseGameObject {
 
     constructor(x, y, width, height) {
         super(x, y, width, height);  
-        this.loadImages(["./images/gras.png"]);      
+        this.loadImages(["./images/rGras.png"]);      
     }
 }
 

@@ -18,7 +18,6 @@ class Coin extends BaseGameObject {
     reactToCollision = function (collidingObject) {
 
         if (collidingObject.name == "Player") {
-            console.log("Coin collected");
             global.audio("./audio/coin.mp3");
             this.active = false;
         }

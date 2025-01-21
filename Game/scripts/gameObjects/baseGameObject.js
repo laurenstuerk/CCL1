@@ -79,7 +79,7 @@ class BaseGameObject {
             this.physicsData.fallVelocity = this.physicsData.terminalVelocity * global.pixelToMeter;
         }
 
-        this.y += (this.physicsData.fallVelocity * global.deltaTime + this.physicsData.prevFallingVelocity); /// 0.7;
+        this.y += (this.physicsData.fallVelocity * global.deltaTime + this.physicsData.prevFallingVelocity);
         this.physicsData.prevFallingVelocity = this.physicsData.fallVelocity * global.deltaTime;
 
         for (let i = 0; i < global.allGameObjects.length; i++) {

@@ -9,10 +9,11 @@ import { GrasBlock } from "../gameObjects/grasBlock.js";
 import { Blocker } from "../gameObjects/blocker.js";
 import { HolyBeer } from "../gameObjects/HolyBeer.js";
 import { Background } from "../gameObjects/background.js";
-import { DefenseTower } from "../gameObjects/defenseTower.js";
+import { DefenseTowerL } from "../gameObjects/defenseTowerL.js";
 import { Landmine } from "../gameObjects/landmine.js";
 import { ovBlock } from "../gameObjects/ovBlock.js";
 import { Spike } from "../gameObjects/spikes.js";
+import { DefenseTowerR } from "../gameObjects/defenseTowerR.js";
 // import { levelManager } from "../../../levelManager.js";
 
 let background;
@@ -103,7 +104,7 @@ function setupGame1(reset = false) {
                 new Block(j * 100, i * 100, 100, 100);
             }
             if (innerArray[j] === 2) {
-                new GrasBlock(j * 100, i * 100, 100, 100);
+                new GrasBlock(j * 100, i * 100  - 20, 100, 120);
             }
             if (innerArray[j] === 3) {
                 new Coin(j * 100 + 25, i * 100 + 25, 50, 50);
@@ -117,15 +118,23 @@ function setupGame1(reset = false) {
             if (innerArray[j] === 6) {
                 new Spike(j * 100, i * 100 + 60, 100, 40);
             }
+            if (innerArray[j] === 7) {
+                new Monster(j * 100, i * 100, 100, 100);
+            }
+            if (innerArray[j] === 8) {
+                new DefenseTowerR(j * 100, i * 100, 100, 100);
+            }
+            if (innerArray[j] === 9) {
+                new HolyBeer(j * 100, i * 100, 100, 100);
+            }
+            if (innerArray[j] === 10) {
+                new DefenseTowerL(j * 100, i * 100, 100, 100);
+            }
             if (innerArray[j] === 11) {
                 new ovBlock(j * 100, i * 100, 100, 100);
             }
-
         }
     }
-    new Monster(600, 1100, 100, 100);
-    new HolyBeer(2800, 1780, 60, 68);
-    new DefenseTower(3600, 1150, 130, 100);
     global.playerObject.yVelocity = 0;
     global.playerObject.physicsData.FallingVelocity = 0;
     global.playerObject.useGravityForces = true;

@@ -88,6 +88,7 @@ class Background extends BaseGameObject {
         // './images/gameOver/deckChair.png',
         // './images/gameOver/beach.png',
         // './images/gameOver/anime.png',
+        // './images/gameOver
     ];
     setGameOverImage() {
         document.getElementById("gameOverImage").src = this.gameOverImages[Math.floor(Math.random() * this.gameOverImages.length)];

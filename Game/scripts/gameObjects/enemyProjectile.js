@@ -8,8 +8,6 @@ class enemyProjectile extends BaseGameObject {
 
     reactToCollision = function (collidingObject) {
         if (collidingObject.name == "Player") {
-            collidingObject.active = false;
-            this.active = false;
             global.gameOver = true;
         }
         if (collidingObject.name == "Block" || collidingObject.name == "GrasBlock") {
@@ -34,7 +32,7 @@ class enemyProjectile extends BaseGameObject {
 
     constructor(x, y, width, height, targetX, targetY) {
         super(x, y, width, height);
-        this.xVelocity = -5;
+        this.xVelocity = 5 * targetX;
         this.yVelocity = 0;
     }
 }
