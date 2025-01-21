@@ -45,7 +45,7 @@ class Player extends BaseGameObject {
             global.level1Complete = false;
 
         }
-        if (global.playerObject.y > 2000) {
+        if (global.playerObject.y > 3000) {
             global.gameOver = true;
             console.log("Game Over" + global.playerObject.y);
 

@@ -1,41 +1,33 @@
 import { global } from "../modules/global.js";
 import { BaseGameObject } from "./baseGameObject.js";
 
-class Coin extends BaseGameObject {
+class Landmine extends BaseGameObject {
     xVelocity = 0;
     yVelocity = 0;
-    name = "Coin";
-    // blockGravityForces = true;
+    name = "Landmine";
+    blockGravityForces = true;
+    shootTimer = 0;
+
     animationData = {
         "animationSprites": [],
-        "timePerSprite": 0.1,
+        "timePerSprite": 0.0555,
         "currentSpriteElapsedTime": 0,
         "firstSpriteIndex": 0,
-        "lastSpriteIndex": 11,
+        "lastSpriteIndex": 0,
         "currentSpriteIndex": 0
     };
 
     reactToCollision = function (collidingObject) {
-
         if (collidingObject.name == "Player") {
-            console.log("Coin collected");
-            global.audio("./audio/coin.mp3");
-            this.active = false;
+            console.log("Player collided with Mine");
+            global.gameOver = true;
         }
     }
-  
-    // update = function() {
-    //     console.log("Coin update");
-    // }
-
 
     constructor(x, y, width, height) {
         super(x, y, width, height);
-
-        this.loadImagesFromSpritesheet("./images/coin.png", 12, 1);
+        this.loadImagesFromSpritesheet("./images/landmine.png", 1, 1);
     }
-
-
 }
 
-export { Coin }
+export { Landmine }

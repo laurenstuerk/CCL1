@@ -52,12 +52,12 @@ function updateVelocity() {
 }
 
 
-
 function shoot(event) {
     if (event.button === 0 && global.playerObject.canShoot  && !global.gameOver) {
         const rect = global.canvas.getBoundingClientRect();
 
-        //Calculate mouse position relative to canvas and adjust for camera position
+        //Calculate mo
+        // use position relative to canvas and adjust for camera position
         const mouseX = event.clientX - rect.left + global.camera.x;
         const mouseY = event.clientY - rect.top - global.camera.y;
 
@@ -78,6 +78,5 @@ function shoot(event) {
             mouseX,
             mouseY
         );
-        global.audio("./audio/laser-gun.mp3");
     }
 }

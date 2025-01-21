@@ -1,19 +1,10 @@
 import { global } from "../modules/global.js";
 import { BaseGameObject } from "./baseGameObject.js";
 
-class Monster extends BaseGameObject {
+class Spike extends BaseGameObject {
     xVelocity = 0;
     yVelocity = 0;
-    name = "Monster";
-    // blockGravityForces = true;
-    animationData = {
-        "animationSprites": [],
-        "timePerSprite": 0.1,
-        "currentSpriteElapsedTime": 0,
-        "firstSpriteIndex": 0,
-        "lastSpriteIndex": 7,
-        "currentSpriteIndex": 0
-    };
+    name = "Spike";
 
     reactToCollision = function (collidingObject) {
         if (collidingObject.name == "Player") {
@@ -24,8 +15,8 @@ class Monster extends BaseGameObject {
 
     constructor(x, y, width, height) {
         super(x, y, width, height);
-        this.loadImagesFromSpritesheet("./images/redMonster.png", 8, 1);
+        this.loadImages(["./images/spike.png"]); 
     }
 }
 
-export { Monster }
+export { Spike }

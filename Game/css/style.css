@@ -81,3 +81,16 @@ body {
 
 }
 
+#skipCutscene{
+    background-color: #333;
+    color: white;
+    border: #000 solid 1px;
+    cursor: pointer;
+    padding: 5px 10px;
+    font-size: 20px;
+
+}
+
+#skipCutscene:hover{
+    background-color: #555;
+}   

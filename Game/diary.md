@@ -59,3 +59,16 @@ Today's progress:
 - **Main Menu:** Worked on the main menu and a restart function.  
 - **Parallax Background:** Started implementing parallax scrolling for the background.  
 - **Sound Effects:** Added sound for shooting and jumping.  
+
+
+markdown
+Copy
+Edit
+# Diary Entry No. 6  
+
+This day (plus the weekend) brought some updates:  
+
+- **Main Menu:** Created a new main menu with level selection and a level manager (still in progress).  
+- **Level Loading:** Worked on proper level loading with the start game setup.  
+- **Game Restart:** Faced challenges stopping and restarting the requestAnimationFrame for a proper game reset.  
+- **New Game Objects:** Added land mines and defense towers that can shoot and kill the player.  

@@ -43,5 +43,4 @@ document.body.addEventListener('click', () => {
 window.startLevel1 = startLevel1;
 window.startLevel2 = startLevel2;
 window.startLevel3 = startLevel3;
-window.startGame = startGame;
 window.goBackToMainMenu = goBackToMainMenu;

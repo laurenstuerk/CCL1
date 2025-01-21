@@ -10,17 +10,35 @@ import { Blocker } from "../gameObjects/blocker.js";
 import { HolyBeer } from "../gameObjects/HolyBeer.js";
 import { Background } from "../gameObjects/background.js";
 import { DefenseTower } from "../gameObjects/defenseTower.js";
-import { levelManager } from "../../../levelManager.js";
+import { Landmine } from "../gameObjects/landmine.js";
+import { ovBlock } from "../gameObjects/ovBlock.js";
+import { Spike } from "../gameObjects/spikes.js";
+// import { levelManager } from "../../../levelManager.js";
 
 let background;
+let currentLevel = "1"; // 😀 Track the current level
+const cutscenesPlayed = {}; // 😀 Track cutscenes played during the current instance
+
+function resetLevel() {
+    // 😀 Reset all game objects and visible elements for the level
+    global.allGameObjects = [];
+    global.visibleGameObjects = [];
+    global.camera = { x: 0, y: 0 };
+
+    // Restart the current level without altering player position unnecessarily
+    if (currentLevel === "1") {
+        setupGame1(true);
+    } else if (currentLevel === "2") {
+        setupGame2(true);
+    } else if (currentLevel === "3") {
+        setupGame3(true);
+    }
+}
 
 function gameLoop(totalRunningTime) {
 
     if (global.gameOver === true) {
         document.getElementById("gameOverScreen").style.display = "flex";
-        global.playerObject.physicsData.terminalVelocity = 0;
-
-        return;
     }
 
     background.update();
@@ -68,8 +86,11 @@ function gameLoop(totalRunningTime) {
     // global.cancelAnimationFrame = requestAnimationFrame(gameLoop); // This keeps the gameLoop running indefinitely
 }
 
-function setupGame1() {
-    background = new Background(0, 0, global.canvas.width, global.canvas.height);
+function setupGame1(reset = false) {
+    currentLevel = "1"; // 😀 Set the current level
+    if (!reset) {
+        background = new Background(0, 0, global.canvas.width, global.canvas.height);
+    }
     // Create Player
     global.playerObject = new Player(300, 500, 65, 95);
 
@@ -85,26 +106,75 @@ function setupGame1() {
                 new GrasBlock(j * 100, i * 100, 100, 100);
             }
             if (innerArray[j] === 3) {
-                new Coin(j * 100, i * 100, 100, 100);
+                new Coin(j * 100 + 25, i * 100 + 25, 50, 50);
+            }
+            if (innerArray[j] === 4) {
+                new Blocker(j * 100, i * 100, 100, 100);
+            }
+            if (innerArray[j] === 5) {
+                new Landmine(j * 100 + 25, i * 100 + 80, 50, 20);
+            }
+            if (innerArray[j] === 6) {
+                new Spike(j * 100, i * 100 + 60, 100, 40);
+            }
+            if (innerArray[j] === 11) {
+                new ovBlock(j * 100, i * 100, 100, 100);
             }
 
         }
     }
-    new Coin(400, 500, 50, 50);
-    new Monster(2200, 1100, 100, 100);
+    new Monster(600, 1100, 100, 100);
     new HolyBeer(2800, 1780, 60, 68);
-    new DefenseTower(3000, 1100, 130, 100);
+    new DefenseTower(3600, 1150, 130, 100);
     global.playerObject.yVelocity = 0;
     global.playerObject.physicsData.FallingVelocity = 0;
     global.playerObject.useGravityForces = true;
 
 
     global.gameOver = false;
-    requestAnimationFrame(gameLoop);
-
+    if (!reset) requestAnimationFrame(gameLoop);
 }
 
-function setupGame2() {
+function setupGame2(reset = false) {
+    currentLevel = "2"; // 😀 Set the current level
+    if (!reset) {
+        background = new Background(0, 0, global.canvas.width, global.canvas.height);
+    }
+
+    // Generate World Map
+    for (let i = 0; i < map.world.length; i++) {
+        let innerArray = map.world[i];
+        for (let j = 0; j < innerArray.length; j++) {
+            // if (innerArray[j] === 1) {
+            //     new Block(j * 100, i * 100, 100, 100);
+            // }
+            if (innerArray[j] === 2) {
+                new GrasBlock(j * 100, i * 100, 100, 100);
+            }
+            // if (innerArray[j] === 3) {
+            //     new Coin(j * 100, i * 100, 100, 100);
+            // }
+
+        }
+    }
+    new Coin(400, 500, 50, 50);
+    new Monster(2200, 1100, 100, 100);
+    new HolyBeer(2800, 1780, 60, 68);
+    global.playerObject.yVelocity = 0;
+    global.playerObject.physicsData.FallingVelocity = 0;
+    global.playerObject.useGravityForces = true;
+
+
+    global.gameOver = false;
+    if (!reset) requestAnimationFrame(gameLoop);
+}
+
+function setupGame3(reset = false) {
+    currentLevel = "3"; // 😀 Set the current level
+    if (!reset) {
+        background = new Background(0, 0, global.canvas.width, global.canvas.height);
+    }
+
     global.playerObject = new Player(300, 500, 65, 95);
 
     // Generate World Map
@@ -132,14 +202,13 @@ function setupGame2() {
 
 
     global.gameOver = false;
-    requestAnimationFrame(gameLoop);
-
+    if (!reset) requestAnimationFrame(gameLoop);
 }
 
+// 😀 Update restart button functionality
 document.getElementById("restartButton").addEventListener("click", function () {
     document.getElementById("gameOverScreen").style.display = "none";
-    // setupGame1();
-    window.location.reload();
+    resetLevel();
 });
 
 document.getElementById("home").addEventListener("click", function () {
@@ -157,15 +226,28 @@ function filterVisibleObjects() {
     global.visibleGameObjects = global.allGameObjects.filter(obj => {
         const dx = Math.abs(obj.x - global.playerObject.x);
         const dy = Math.abs(obj.y - global.playerObject.y);
-        return dx <= 1000 && dy <= 1000;
+        return dx <= 1100 && dy <= 720;
     });
 }
 
 function playCutscene(cutsceneSrc) {
+    const cutsceneKey = cutsceneSrc.split("/").pop(); // 😀 Extract filename as key
+    if (cutscenesPlayed[cutsceneKey]) return; // 😀 Skip if already played
+
     const cutsceneElement = document.getElementById("cutscene");
     const cutsceneVideo = document.getElementById("cutsceneVideo");
     const gameContainer = document.getElementById("gameContainer");
     const skipButton = document.getElementById("skipCutscene");
+
+    // Add skip button event listener
+    document.getElementById("skipCutscene").addEventListener("click", function () {
+        cutscenesPlayed[cutsceneKey] = true;
+        endCutScene();
+    });
+    cutsceneVideo.src = cutsceneSrc;
+    cutsceneElement.style.display = "block";
+    skipButton.style.display = "block";
+    gameContainer.style.display = "none";
 
     // Function to handle skipping
     function endCutScene() {
@@ -173,40 +255,32 @@ function playCutscene(cutsceneSrc) {
         cutsceneElement.style.display = "none";
         gameContainer.style.display = "flex";
         skipButton.style.display = "none";
-        setupGame1();
+        if (currentLevel === "1") setupGame1();
+        else if (currentLevel === "2") setupGame2();
+        else if (currentLevel === "3") setupGame3();
     };
 
-    // Add skip button event listener
-    document.getElementById("endCutScene").onclick;
-
-    cutsceneVideo.src = cutsceneSrc;
-    cutsceneElement.style.display = "block";
-    skipButton.style.display = "block";
-    gameContainer.style.display = "none";
-
     cutsceneVideo.onended = () => {
+        cutscenesPlayed[cutsceneKey] = true; // 😀 Mark cutscene as played
         endCutScene();
-        levelManager.cutSceneElement1Watched = true;
-        console.log(levelManager.cutSceneElement1Watched);
+        // levelManager.cutSceneElement1Watched = true;
+        // console.log(levelManager.cutSceneElement1Watched);
     };
 }
 
 function levelSelect() {
-    console.log(levelManager.cutSceneElement1Watched);
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get("level") === "1") {
-        if (levelManager.cutSceneElement1Watched) {
+        if (!cutscenesPlayed["CutScene1.mp4"]) {
+            playCutscene("../CutScenes/CutScene1.mp4");
+        } else {
             setupGame1();
-        }
-        else {
-            playCutscene("../assets/cutscenes/cutscene1.mp4");
-
         }
     } else if (urlParams.get("level") === "2") {
         setupGame2();
-
+    } else if (urlParams.get("level") === "3") {
+        setupGame3();
     }
-
 }
 
 

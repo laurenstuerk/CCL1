@@ -44,6 +44,7 @@ class Projectile extends BaseGameObject {
         // normalize and set velocity
         this.xVelocity = (dx / magnitude) * 40;
         this.yVelocity = (dy / magnitude) * 40;
+        global.audio("./audio/laser-gun.mp3");
     }
 }
 
