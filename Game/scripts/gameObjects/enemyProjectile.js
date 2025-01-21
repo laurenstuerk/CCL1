@@ -1,15 +1,16 @@
 import { BaseGameObject } from "./baseGameObject.js";
 import { global } from "../modules/global.js";
 
-class Projectile extends BaseGameObject {
-    name = "Projectile";
+class enemyProjectile extends BaseGameObject {
+    name = "enemyProjectile";
     xVelocity = 0;
     yVelocity = 0;
 
     reactToCollision = function (collidingObject) {
-        if (collidingObject.name == "Monster") {
+        if (collidingObject.name == "Player") {
             collidingObject.active = false;
             this.active = false;
+            global.gameOver = true;
         }
         if (collidingObject.name == "Block" || collidingObject.name == "GrasBlock") {
             this.active = false;
@@ -19,9 +20,7 @@ class Projectile extends BaseGameObject {
     update = function () {
         this.x += this.xVelocity;
         this.y += this.yVelocity;
-        if (this.x > global.playerObject.x + 1000 || this.x < global.playerObject.x - 1000 || this.y > global.playerObject.y + 500 || this.y < global.playerObject.y - 500) {
-            this.active = false; 
-        }
+
     };
 
 
@@ -29,22 +28,15 @@ class Projectile extends BaseGameObject {
 
 
     draw = function () {
-        global.ctx.fillStyle = "gold";
+        global.ctx.fillStyle = "red";
         global.ctx.fillRect(this.x, this.y, this.width, this.height);
     };
 
     constructor(x, y, width, height, targetX, targetY) {
         super(x, y, width, height);
-
-        // Calculate direction
-        const dx = targetX - x;
-        const dy = targetY - y;
-        const magnitude = Math.sqrt(dx * dx + dy * dy);
-
-        // normalize and set velocity
-        this.xVelocity = (dx / magnitude) * 40;
-        this.yVelocity = (dy / magnitude) * 40;
+        this.xVelocity = -5;
+        this.yVelocity = 0;
     }
 }
 
-export { Projectile }
+export { enemyProjectile }

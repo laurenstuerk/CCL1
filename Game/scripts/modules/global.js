@@ -16,7 +16,8 @@ global.ScrollPostRight = 300;
 global.ScrollPostTop = 200;
 global.ScrollPostBottom = 300;
 global.visibleGameObjects = [];
-global.playerObject.canShoot = false;
+global.playerObject.canShoot = true;
+global.cancelAnimationFrame;
 
 
 global.getCanvasBounds = function () {
@@ -61,6 +62,13 @@ global.audio = function(src) {
     new Audio(src).play();
     
 }
+
+global.levelComplete = function () {
+    global.level1Complete = true;
+    global.audio("sounds/levelComplete.mp3");
+    console.log("Level Complete");
+    // document.getElementById("levelComplete").style.display = "block";
+}   
 
 
 

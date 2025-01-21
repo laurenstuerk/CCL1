@@ -54,7 +54,7 @@ class BaseGameObject {
     };
 
     applyGravity = function () {
-        if (!this.useGravityForces) {
+        if (!this.useGravityForces || global.gameOver) {
             return;
         } else {
             this.physicsData.fallVelocity += global.gravityForce * global.deltaTime * global.pixelToMeter;
@@ -64,7 +64,7 @@ class BaseGameObject {
             if (this.physicsData.isGrounded == true) {
                 this.physicsData.fallVelocity = 0;
             }
-            this.physicsData.fallVelocity = -this.physicsData.jumpForce * global.pixelToMeter * 2;
+            this.physicsData.fallVelocity = -this.physicsData.jumpForce * global.pixelToMeter * 3.5;
 
             this.physicsData.isGrounded = false;
             this.physicsData.fallVelocity -= (global.gravityForce * global.deltaTime * global.pixelToMeter) * 2;
@@ -79,7 +79,7 @@ class BaseGameObject {
             this.physicsData.fallVelocity = this.physicsData.terminalVelocity * global.pixelToMeter;
         }
 
-        this.y += (this.physicsData.fallVelocity * global.deltaTime + this.physicsData.prevFallingVelocity) / 0.7;
+        this.y += (this.physicsData.fallVelocity * global.deltaTime + this.physicsData.prevFallingVelocity); /// 0.7;
         this.physicsData.prevFallingVelocity = this.physicsData.fallVelocity * global.deltaTime;
 
         for (let i = 0; i < global.allGameObjects.length; i++) {
@@ -95,15 +95,7 @@ class BaseGameObject {
                     else if (this.physicsData.fallVelocity < 0) {
                         this.y = otherObject.getBoxBounds().bottom + 0.1;
                     }
-                    // Ground Collision
-                    // if (this.getBoxBounds().bottom >= otherObject.getBoxBounds().top) {
-                    //     this.y = otherObject.getBoxBounds().top - this.height - (this.getBoxBounds().bottom - (this.y + this.height)) - 0.1;
-                    //     this.physicsData.isGrounded = true;
-                    //     console.log("ground collision");
-                    // } else if (this.getBoxBounds().top <= otherObject.getBoxBounds().bottom) {
-                    //     this.y = otherObject.getBoxBounds().bottom + 0.1;
-                    //     console.log("ceiling collision");
-                    // }
+
                     this.physicsData.jumpForce = 0;
                     this.physicsData.fallVelocity = 0;
                     this.physicsData.prevFallingVelocity = 0;
@@ -118,13 +110,7 @@ class BaseGameObject {
         if (this.physicsData.isGrounded || this.physicsData.remainingJumps > 0) {
             this.physicsData.jumpForce = jumpForce;
             this.physicsData.remainingJumps--;
-            console.log("remaining jumps: " + this.physicsData.remainingJumps);
             global.audio("./audio/airJump.mp3");
-
-
-
-
-
         }
     };
 

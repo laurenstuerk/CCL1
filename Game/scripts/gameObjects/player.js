@@ -5,7 +5,8 @@ class Player extends BaseGameObject {
     name = "Player";
     xVelocity = 0;
     yVelocity = 0;
-    useGravityForces = true;
+    useGravityForces = false;
+    canShoot = true;
 
     physicsData = {
         "fallVelocity": 10,
@@ -34,17 +35,14 @@ class Player extends BaseGameObject {
 
     update = function () {
         this.x += this.xVelocity * global.deltaTime;
-        this.y += this.yVelocity * global.deltaTime
-        if (this.yVelocityVelocity == 0) {
-            // global.playerObject.switchCurrentSprites(this.animationData.firstSpriteIndex, this.animationData.firstSpriteIndex);
-        }
+        this.y += this.yVelocity * global.deltaTime;
+        
+
         document.getElementById("PositionDisplay").innerHTML = "X:" + Math.floor(global.playerObject.x) + " Y:" + Math.floor(global.playerObject.y);
 
-        const rect = global.canvas.getBoundingClientRect()
-        document.getElementById("DisplayCanvasPosition").innerHTML = "Canvas X:" + Math.floor(rect.left) + " Canvas Y:" + Math.floor(rect.top);
+
         if (global.playerObject.x > 7000) {
-            global.gameOver = true;
-            console.log("Game Over");
+            global.level1Complete = false;
 
         }
         if (global.playerObject.y > 2000) {

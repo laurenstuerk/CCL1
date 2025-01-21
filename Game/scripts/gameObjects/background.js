@@ -39,7 +39,7 @@ class Background extends BaseGameObject {
         const deltaX = global.playerObject.x - this.lastPlayerX;
 
         // Log deltaX for debugging
-        console.log("Delta X:", deltaX);
+        // console.log("Delta X:", deltaX);
 
         // Update last player position
         this.lastPlayerX = global.playerObject.x;

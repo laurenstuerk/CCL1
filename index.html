@@ -5,41 +5,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Beer</title>
+  <link rel="icon" href="./Game/images/beer.png">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
   <div id="background"></div>
   <div id="mainMenu" class="menu">
-    <button onclick="startGame()">Start Game</button>
+    <button id="startBtn">Start Game</button>
   </div>
 
   <div id="levelSelectMenu">
-    <button onclick="startLevel()">Level 1</button>
-    <button disabled onclick="startLevel()">Level 2</button>
-    <button disabled onclick="startLevel()">Level 3</button>
+    <button onclick="startLevel1()">Level 1</button>
+    <button id="level2" disabled onclick="startLevel2()">Level 2</button>
+    <button id="level3" disabled onclick="startLevel3()">Level 3</button>
     <button onclick="goBackToMainMenu()">Back</button>
   </div>
 
   <audio autoplay hidden loop>
-    <source src="./CutScenes/beerRun.mp3" type="audio/ogg">
+    <source src="./CutScenes/beerRun.mp3" type="audio/mp3">
   </audio>
 
-  <script>
-    function startLevel(level) {
-      window.location.href = "./Game/index.html";
-
-    }
-    function startGame() {
-      document.getElementById('mainMenu').style.display = 'none';
-      document.getElementById('levelSelectMenu').style.display = 'flex';
-    }
-    function goBackToMainMenu() {
-      document.getElementById('levelSelectMenu').style.display = 'none';
-      document.getElementById('mainMenu').style.display = 'flex';
-    }
-  </script>
+  <script type="module" src="./script.js"></script>
 </body>
 
 </html>
