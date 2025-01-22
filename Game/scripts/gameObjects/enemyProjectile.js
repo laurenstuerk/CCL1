@@ -16,23 +16,23 @@ class enemyProjectile extends BaseGameObject {
     };
 
     update = function () {
-        this.x += this.xVelocity;
-        this.y += this.yVelocity;
-
+        this.x += this.xVelocity * global.deltaTime;
     };
 
 
-
-
-
     draw = function () {
-        global.ctx.fillStyle = "red";
+        global.ctx.fillStyle = "white";
         global.ctx.fillRect(this.x, this.y, this.width, this.height);
+
+        global.ctx.strokeStyle = "red";
+        global.ctx.lineWidth   = 5;
+        global.ctx.strokeRect(this.x, this.y, this.width, this.height);
+
     };
 
     constructor(x, y, width, height, targetX, targetY) {
         super(x, y, width, height);
-        this.xVelocity = 5 * targetX;
+        this.xVelocity = 700 * targetX;
         this.yVelocity = 0;
     }
 }

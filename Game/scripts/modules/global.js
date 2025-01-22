@@ -7,7 +7,6 @@ global.allGameObjects = [];
 global.playerObject = {};
 global.gravityForce = 9.8;
 global.pixelToMeter = 100;
-global.gameOver = false;
 global.camera = {
     x: 0,
     y: 0,
@@ -16,8 +15,11 @@ global.ScrollPostRight = 300;
 global.ScrollPostTop = 200;
 global.ScrollPostBottom = 300;
 global.visibleGameObjects = [];
-global.playerObject.canShoot = true;
-global.cancelAnimationFrame;
+global.playerObject.canShoot = false;
+// Game Progress
+global.level1Complete = false;
+global.gameOver = false;
+
 
 
 global.getCanvasBounds = function () {
@@ -66,7 +68,6 @@ global.audio = function(src) {
 global.levelComplete = function () {
     global.level1Complete = true;
     global.audio("sounds/levelComplete.mp3");
-    console.log("Level Complete");
     // document.getElementById("levelComplete").style.display = "block";
 }   
 

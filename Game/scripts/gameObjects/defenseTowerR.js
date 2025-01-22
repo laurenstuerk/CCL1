@@ -35,7 +35,7 @@ class DefenseTowerR extends BaseGameObject {
 
     constructor(x, y, width, height) {
         super(x, y, width, height);
-        this.loadImagesFromSpritesheet("./images/gunTower.png", 14, 1);
+        this.loadImagesFromSpritesheet("./images/gunTowerR.png", 14, 1);
     }
 }
 

@@ -23,6 +23,8 @@ function goBackToMainMenu() {
 
 // Enable levels based on completion
 window.onload = () => {
+    console.log('Window loaded');
+    console.log("Lv1Comp " + levelManager.level1Complete);
     if (levelManager.level1Complete) {
         document.getElementById('level2').disabled = false;
     }

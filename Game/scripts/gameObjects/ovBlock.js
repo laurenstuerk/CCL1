@@ -11,7 +11,7 @@ class ovBlock extends BaseGameObject {
 
     constructor(x, y, width, height) {
         super(x, y, width, height);  
-        this.loadImages(["./images/stone.png"]);      
+        this.loadImages(["./images/rStone.png"]);      
     }
 }
 
