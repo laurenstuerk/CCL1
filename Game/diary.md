@@ -78,3 +78,19 @@ Today’s progress:
 - **First Level:** Designed the final first level and implemented all necessary game objects.  
 - **New Sprites:** Created and added new object and sprites.  
 - **Second Cutscene:** Started working on the second cutscene.  
+
+
+
+# Diary Entry No. 8  
+
+Major progress today:  
+
+- **Levels Complete:** Finished levels 1, 2, and 3.  
+- **New Game Objects:** Added the last game objects.  
+- **Level 2 Cutscene:** Created the second cutscene.  
+- **Mission Progress:** Added local storage to save mission progress.  
+- **New Images:** Designed screens for "Game Over" and "Victory."  
+- **New Sound:** Added new sound effects.
+- **Bug Fix**
+
+The game is almost ready!  

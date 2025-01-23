@@ -22,14 +22,13 @@ class DefenseTowerR extends BaseGameObject {
         this.shootTimer += global.deltaTime;
 
         if (this.shootTimer >= 1) { // Every 1 second
-            console.log("Shoot");
             this.shoot();
             this.shootTimer = 0; // Reset timer
         }
     }
 
     shoot() {
-        new enemyProjectile(this.x + this.width / 2, this.y + 30, 30, 10, 1, global.playerObject.y);
+        // new enemyProjectile(this.x + this.width / 2, this.y + 30, 30, 10, 1, global.playerObject.y);
     }
 
 

@@ -1,8 +1,9 @@
 import { global } from "./global.js";
 import { Block } from "../gameObjects/block.js";
 import { Player } from "../gameObjects/player.js";
-import { map } from "../maps/map.js";
 import { map1 } from "../maps/map1.js";
+import { map2 } from "../maps/map2.js";
+import { map3 } from "../maps/map3.js";
 import { Monster } from "../gameObjects/monster.js";
 import { Coin } from "../gameObjects/coin.js";
 import { GrasBlock } from "../gameObjects/grasBlock.js";
@@ -15,6 +16,7 @@ import { ovBlock } from "../gameObjects/ovBlock.js";
 import { Spike } from "../gameObjects/spikes.js";
 import { DefenseTowerR } from "../gameObjects/defenseTowerR.js";
 import { levelManager } from "../../../levelManager.js";
+import { Gun } from "../gameObjects/gun.js";
 
 let background;
 let currentLevel = "1"; // 😀 Track the current level
@@ -40,6 +42,7 @@ function gameLoop(totalRunningTime) {
 
     if (global.gameOver === true) {
         document.getElementById("gameOverScreen").style.display = "flex";
+    
     }
     if (global.level1Complete === true) {
         console.log("Level 1 complete");
@@ -47,8 +50,8 @@ function gameLoop(totalRunningTime) {
         document.getElementById("levelCompleteScreen").style.display = "flex";
     }
 
-    background.update();
-    background.draw(global.ctx);
+    // background.update();
+    // background.draw(global.ctx);
 
     global.deltaTime = totalRunningTime - global.prevTotalRunningTime; // Time in milliseconds between frames
     global.deltaTime /= 1000; // Convert milliseconds to seconds for consistency in calculations
@@ -95,11 +98,14 @@ function gameLoop(totalRunningTime) {
 function setupGame1(reset = false) {
     global.prevTotalRunningTime = performance.now();
     currentLevel = "1"; // 😀 Set the current level
-    if (!reset) {
-        background = new Background(0, 0, global.canvas.width, global.canvas.height);
-    }
+
+    new Background(0, 0, global.canvas.width, global.canvas.height);
+
+
     // Create Player
     global.playerObject = new Player(300, 500, 65, 95);
+    global.playerObject.physicsData.maxJumps = 0;
+    global.playerObject.canShoot = false;
 
     console.log(global.playerObject.y);
     // Generate World Map
@@ -145,7 +151,7 @@ function setupGame1(reset = false) {
             }
         }
     }
-    new HolyBeer(4200, 2800, 60, 60);
+    // new HolyBeer(4200, 2800, 60, 60);
     global.playerObject.yVelocity = 0;
     global.playerObject.physicsData.FallingVelocity = 0;
     global.playerObject.useGravityForces = true;
@@ -158,31 +164,57 @@ function setupGame1(reset = false) {
 function setupGame2(reset = false) {
     global.prevTotalRunningTime = performance.now();
     currentLevel = "2"; // 😀 Set the current level
-    if (!reset) {
-        background = new Background(0, 0, global.canvas.width, global.canvas.height);
-    }
+    new Background(0, 0, global.canvas.width, global.canvas.height);
 
+    // Create Player
+    global.playerObject = new Player(300, 500, 65, 95);
+    global.playerObject.physicsData.maxJumps = 2;
+    global.playerObject.canShoot = false;
+
+    console.log(global.playerObject.y);
     // Generate World Map
-    for (let i = 0; i < map.world.length; i++) {
-        let innerArray = map.world[i];
+    for (let i = 0; i < map2.world.length; i++) {
+        let innerArray = map2.world[i];
         for (let j = 0; j < innerArray.length; j++) {
-            // if (innerArray[j] === 1) {
-            //     new Block(j * 100, i * 100, 100, 100);
-            // }
-            if (innerArray[j] === 2) {
-                new GrasBlock(j * 100, i * 100, 100, 100);
+            switch (innerArray[j]) {
+                case 1:
+                    new Block(j * 100, i * 100, 100, 100);
+                    break;
+                case 2:
+                    new GrasBlock(j * 100, i * 100 - 20, 100, 120);
+                    break;
+                case 3:
+                    new Coin(j * 100 + 25, i * 100 + 25, 50, 50);
+                    break;
+                case 4:
+                    new Blocker(j * 100, i * 100, 100, 100);
+                    break;
+                case 5:
+                    new Landmine(j * 100 + 25, i * 100 + 80, 50, 20);
+                    break;
+                case 6:
+                    new Spike(j * 100, i * 100 + 60, 100, 40);
+                    break;
+                case 7:
+                    new Monster(j * 100, i * 100, 100, 100);
+                    break;
+                case 8:
+                    new DefenseTowerR(j * 100, i * 100, 100, 100);
+                    break;
+                case 9:
+                    new Gun(j * 100, i * 100, 100, 33);
+                    break;
+                case 10:
+                    new DefenseTowerL(j * 100, i * 100, 100, 100);
+                    break;
+                case 11:
+                    new ovBlock(j * 100, i * 100, 100, 100);
+                    break;
+                default:
+                    break;
             }
-            // if (innerArray[j] === 3) {
-            //     new Coin(j * 100, i * 100, 100, 100);
-            // }
-
         }
     }
-    new Coin(400, 500, 50, 50);
-    new Monster(2200, 1100, 100, 100);
-    new HolyBeer(2800, 1780, 60, 68);
-
-
 
     global.gameOver = false;
     if (!reset) requestAnimationFrame(gameLoop);
@@ -191,34 +223,53 @@ function setupGame2(reset = false) {
 function setupGame3(reset = false) {
     global.prevTotalRunningTime = performance.now();
     currentLevel = "3"; // 😀 Set the current level
-    if (!reset) {
-        background = new Background(0, 0, global.canvas.width, global.canvas.height);
-    }
+
+    new Background(0, 0, global.canvas.width, global.canvas.height);
+
 
     global.playerObject = new Player(300, 500, 65, 95);
-
+    global.playerObject.canShoot = true;
+    global.playerObject.physicsData.maxJumps = 2;
     // Generate World Map
-    for (let i = 0; i < map.world.length; i++) {
-        let innerArray = map.world[i];
+    for (let i = 0; i < map3.world.length; i++) {
+        let innerArray = map3.world[i];
         for (let j = 0; j < innerArray.length; j++) {
-            // if (innerArray[j] === 1) {
-            //     new Block(j * 100, i * 100, 100, 100);
-            // }
-            if (innerArray[j] === 2) {
-                new GrasBlock(j * 100, i * 100, 100, 100);
+            switch (innerArray[j]) {
+                case 1:
+                    new Block(j * 100, i * 100, 100, 100);
+                    break;
+                case 2:
+                    new GrasBlock(j * 100, i * 100 - 20, 100, 120);
+                    break;
+                case 3:
+                    new Coin(j * 100 + 25, i * 100 + 25, 50, 50);
+                    break;
+                case 4:
+                    new Blocker(j * 100, i * 100, 100, 100);
+                    break;
+                case 5:
+                    new Landmine(j * 100 + 25, i * 100 + 80, 50, 20);
+                    break;
+                case 6:
+                    new Spike(j * 100, i * 100 + 60, 100, 40);
+                    break;
+                case 7:
+                    new Monster(j * 100, i * 100, 100, 100);
+                    break;
+                case 8:
+                    new DefenseTowerR(j * 100, i * 100, 100, 100);
+                    break;
+                case 10:
+                    new DefenseTowerL(j * 100, i * 100, 100, 100);
+                    break;
+                case 11:
+                    new ovBlock(j * 100, i * 100, 100, 100);
+                    break;
+                default:
+                    break;
             }
-            // if (innerArray[j] === 3) {
-            //     new Coin(j * 100, i * 100, 100, 100);
-            // }
-
         }
     }
-    new Coin(400, 500, 50, 50);
-    new Monster(2200, 1100, 100, 100);
-    new HolyBeer(2800, 1780, 60, 68);
-    global.playerObject.yVelocity = 0;
-    global.playerObject.physicsData.FallingVelocity = 0;
-    global.playerObject.useGravityForces = true;
 
 
     global.gameOver = false;
@@ -242,7 +293,7 @@ document.getElementById("nextLevelBtn").addEventListener("click", function () {
     if (currentLevel === "1") {
         window.location.href = "./index.html?level=2";
     } else if (currentLevel === "2") {
-        window.location.href = "./index.html?level=2";
+        window.location.href = "./index.html?level=3";
     }
 });
 
@@ -315,6 +366,9 @@ function levelSelect() {
         skipButton.style.display = "none";
         setupGame2();
     } else if (urlParams.get("level") === "3") {
+        cutsceneElement.style.display = "none";
+        gameContainer.style.display = "flex";
+        skipButton.style.display = "none";
         setupGame3();
     }
 }

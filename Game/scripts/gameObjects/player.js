@@ -5,7 +5,7 @@ class Player extends BaseGameObject {
     name = "Player";
     xVelocity = 0;
     yVelocity = 0;
-    useGravityForces = false;
+    useGravityForces = true;
     canShoot = true;
 
     physicsData = {
@@ -16,7 +16,7 @@ class Player extends BaseGameObject {
         "jumpForceDecay": 2,
         "isGrounded": false,
         "remainingJumps": 1, // Allows double jump by default
-        "maxJumps": 1        // Maximum number of jumps
+        "maxJumps": 2        // Maximum number of jumps
     }
     animationData = {
         "animationSprites": [],
@@ -55,7 +55,6 @@ class Player extends BaseGameObject {
 
     constructor(x, y, width, height) {
         super(x, y, width, height);
-        console.log("Player created");
         this.loadImagesFromSpritesheet("images/fullCharacterSpriteSheet.png", 37, 1);
         this.switchCurrentSprites(0, 3);
     }

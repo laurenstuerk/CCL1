@@ -18,6 +18,7 @@ global.visibleGameObjects = [];
 global.playerObject.canShoot = false;
 // Game Progress
 global.level1Complete = false;
+global.level2Complete = false;
 global.gameOver = false;
 
 
