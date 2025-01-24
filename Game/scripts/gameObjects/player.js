@@ -42,7 +42,7 @@ class Player extends BaseGameObject {
 
 
         if (global.playerObject.x > 9000) {
-            global.level1Complete = true;
+            global.levelComplete = true;
             console.log("Level 1 Complete");
 
         }

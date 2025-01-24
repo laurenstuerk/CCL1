@@ -28,7 +28,7 @@ class DefenseTowerR extends BaseGameObject {
     }
 
     shoot() {
-        // new enemyProjectile(this.x + this.width / 2, this.y + 30, 30, 10, 1, global.playerObject.y);
+        new enemyProjectile(this.x + this.width / 2, this.y + 30, 30, 10, 1, global.playerObject.y);
     }
 
 

@@ -8,7 +8,7 @@ class Spike extends BaseGameObject {
 
     reactToCollision = function (collidingObject) {
         if (collidingObject.name == "Player") {
-            console.log("Player collided with Monster");
+            global.audio("./audio/spikeDie.mp3");
             global.gameOver = true;
         }
     }

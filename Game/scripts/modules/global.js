@@ -20,6 +20,7 @@ global.playerObject.canShoot = false;
 global.level1Complete = false;
 global.level2Complete = false;
 global.gameOver = false;
+global.levelComplete = false;
 
 
 
@@ -62,15 +63,16 @@ global.detectBoxCollision = function (gameObject1, gameObject2) {
 }
 
 global.audio = function(src) {
-    new Audio(src).play();
-    
+    if (!global.gameOver) {
+        new Audio(src).play();
+    }
 }
 
-global.levelComplete = function () {
-    global.level1Complete = true;
-    global.audio("sounds/levelComplete.mp3");
-    // document.getElementById("levelComplete").style.display = "block";
-}   
+// global.levelComplete = function () {
+//     global.level1Complete = true;
+//     global.audio("sounds/levelComplete.mp3");
+//     // document.getElementById("levelComplete").style.display = "block";
+// }   
 
 
 
