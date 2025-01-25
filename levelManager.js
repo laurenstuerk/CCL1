@@ -1,11 +1,6 @@
 const levelManager = {
-    // Level 1
     level1Complete: false,
-
-    // // Level 2
     level2Complete: false,
-
-    // // Level 3
     level3Complete: false,
 };
 // Save levelManager to localStorage

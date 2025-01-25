@@ -16,9 +16,19 @@ document.getElementById("startBtn").addEventListener("click", function () {
     document.getElementById('levelSelectMenu').style.display = 'flex';
 });
 
+document.getElementById("guideBtn").addEventListener("click", function () {
+    document.getElementById('gameGuide').style.display = 'flex';
+    document.getElementById('startBtn').style.display = 'none';
+    document.getElementById('guideBtn').style.display = 'none';
+});
+
 function goBackToMainMenu() {
     document.getElementById('levelSelectMenu').style.display = 'none';
     document.getElementById('mainMenu').style.display = 'flex';
+    document.getElementById('startBtn').style.display = '';
+    document.getElementById('guideBtn').style.display = '';
+    document.getElementById('gameGuide').style.display = 'none';
+
 }
 
 // Enable levels based on completion

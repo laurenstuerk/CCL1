@@ -22,6 +22,7 @@ class HolyBeer extends BaseGameObject {
             this.active = false;
             global.playerObject.holyBeerCount += 1;
             global.playerObject.physicsData.maxJumps = 2
+            global.audio("./audio/doubleJumpUnlocked.mp3");
         }
     }
   

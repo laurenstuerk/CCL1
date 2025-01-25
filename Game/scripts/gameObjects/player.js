@@ -41,8 +41,8 @@ class Player extends BaseGameObject {
         document.getElementById("PositionDisplay").innerHTML = "X:" + Math.floor(global.playerObject.x) + " Y:" + Math.floor(global.playerObject.y);
 
 
-        if (global.playerObject.x > 9000) {
-            global.level1Complete = true;
+        if (global.playerObject.x > 500) {
+            global.levelComplete = true;
             console.log("Level 1 Complete");
 
         }

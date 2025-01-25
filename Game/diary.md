@@ -94,3 +94,13 @@ Major progress today:
 - **Bug Fix**
 
 The game is almost ready!  
+
+
+
+# Diary Entry No. 9  
+
+- **Cutscenes:** Finished the last cutscenes.  
+- **Sound Bug Fix:** Resolved sound-related issues.  
+- **Other Bug Fixes:** Various bugs to improve gameplay.  
+
+The game is now complete and ready to shine! 

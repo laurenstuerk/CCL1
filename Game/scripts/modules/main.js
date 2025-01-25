@@ -42,12 +42,24 @@ function gameLoop(totalRunningTime) {
 
     if (global.gameOver === true) {
         document.getElementById("gameOverScreen").style.display = "flex";
-    
+        return;
     }
-    if (global.level1Complete === true) {
-        console.log("Level 1 complete");
-        levelManager.level1Complete = true;
-        document.getElementById("levelCompleteScreen").style.display = "flex";
+    if (global.levelComplete === true) {
+        if (currentLevel === "1") {
+            document.getElementById("levelCompleteScreen").style.display = "flex";
+            console.log("Level 1 complete");
+            levelManager.level1Complete = true;
+            return;
+        } else if (currentLevel === "2") {
+            console.log("Level 2 complete");
+            levelManager.level2Complete = true;
+            playCutscene("../CutScenes/CutScene2.mp4");
+            return;
+        } else if (currentLevel === "3") {
+            console.log("Level 3 complete");
+            playCutscene("../CutScenes/CutScene3.mp4");
+            return;
+        }
     }
 
     // background.update();
@@ -97,6 +109,7 @@ function gameLoop(totalRunningTime) {
 
 function setupGame1(reset = false) {
     global.prevTotalRunningTime = performance.now();
+    global.gameOver = false;
     currentLevel = "1"; // 😀 Set the current level
 
     new Background(0, 0, global.canvas.width, global.canvas.height);
@@ -106,8 +119,6 @@ function setupGame1(reset = false) {
     global.playerObject = new Player(300, 500, 65, 95);
     global.playerObject.physicsData.maxJumps = 0;
     global.playerObject.canShoot = false;
-
-    console.log(global.playerObject.y);
     // Generate World Map
     for (let i = 0; i < map1.world.length; i++) {
         let innerArray = map1.world[i];
@@ -117,7 +128,7 @@ function setupGame1(reset = false) {
                     new Block(j * 100, i * 100, 100, 100);
                     break;
                 case 2:
-                    new GrasBlock(j * 100, i * 100 - 20, 100, 120);
+                    new GrasBlock(j * 100, i * 100 - 25, 100, 125);
                     break;
                 case 3:
                     new Coin(j * 100 + 25, i * 100 + 25, 50, 50);
@@ -163,6 +174,7 @@ function setupGame1(reset = false) {
 
 function setupGame2(reset = false) {
     global.prevTotalRunningTime = performance.now();
+    global.gameOver = false;
     currentLevel = "2"; // 😀 Set the current level
     new Background(0, 0, global.canvas.width, global.canvas.height);
 
@@ -181,7 +193,7 @@ function setupGame2(reset = false) {
                     new Block(j * 100, i * 100, 100, 100);
                     break;
                 case 2:
-                    new GrasBlock(j * 100, i * 100 - 20, 100, 120);
+                    new GrasBlock(j * 100, i * 100 - 25, 100, 125);
                     break;
                 case 3:
                     new Coin(j * 100 + 25, i * 100 + 25, 50, 50);
@@ -222,6 +234,7 @@ function setupGame2(reset = false) {
 
 function setupGame3(reset = false) {
     global.prevTotalRunningTime = performance.now();
+    global.gameOver = false;
     currentLevel = "3"; // 😀 Set the current level
 
     new Background(0, 0, global.canvas.width, global.canvas.height);
@@ -239,7 +252,7 @@ function setupGame3(reset = false) {
                     new Block(j * 100, i * 100, 100, 100);
                     break;
                 case 2:
-                    new GrasBlock(j * 100, i * 100 - 20, 100, 120);
+                    new GrasBlock(j * 100, i * 100 - 25, 100, 125);
                     break;
                 case 3:
                     new Coin(j * 100 + 25, i * 100 + 25, 50, 50);
@@ -279,6 +292,7 @@ function setupGame3(reset = false) {
 // 😀 Update restart button functionality
 document.getElementById("restartButton").addEventListener("click", function () {
     document.getElementById("gameOverScreen").style.display = "none";
+    requestAnimationFrame(gameLoop)
     resetLevel();
 });
 
@@ -336,13 +350,28 @@ function playCutscene(cutsceneSrc) {
     // Function to handle skipping
     function endCutScene() {
         cutsceneVideo.pause();
-        cutsceneElement.style.display = "none";
-        gameContainer.style.display = "flex";
-        skipButton.style.display = "none";
-        if (currentLevel === "1") setupGame1();
-        else if (currentLevel === "2") setupGame2();
-        else if (currentLevel === "3") setupGame3();
-    };
+        if (currentLevel === "1") {
+            cutsceneElement.style.display = "none";
+            gameContainer.style.display = "flex";
+            skipButton.style.display = "none";
+            setupGame1();
+        }
+        else if (currentLevel === "2") {
+            console.log("Level 2");
+            cutsceneElement.style.display = "none";
+            gameContainer.style.display = "flex";
+            skipButton.style.display = "none";
+            document.getElementById("levelCompleteScreen").style.display = "flex";
+        }
+        else if (currentLevel === "3") {
+            cutsceneElement.style.display = "none";
+            gameContainer.style.display = "flex";
+            skipButton.style.display = "none";
+            document.getElementById("nextLevelBtn").style.display = "none";
+            document.getElementById("levelCompleteScreen").style.display = "flex";
+            global.audio("./audio/level-passed.mp3");
+        };
+    }
 
     cutsceneVideo.onended = () => {
         cutscenesPlayed[cutsceneKey] = true; // 😀 Mark cutscene as played
