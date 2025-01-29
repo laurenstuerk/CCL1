@@ -8,9 +8,10 @@ class enemyProjectile extends BaseGameObject {
 
     reactToCollision = function (collidingObject) {
         if (collidingObject.name == "Player") {
+            new global.audio("./audio/shotByLasergun.mp3");
             global.gameOver = true;
-        }
-        if (collidingObject.name == "Block" || collidingObject.name == "GrasBlock") {
+
+        } else if (collidingObject.name == "Block" || collidingObject.name == "GrasBlock") {
             this.active = false;
         }
     };

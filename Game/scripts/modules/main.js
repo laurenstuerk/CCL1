@@ -18,7 +18,6 @@ import { DefenseTowerR } from "../gameObjects/defenseTowerR.js";
 import { levelManager } from "../../../levelManager.js";
 import { Gun } from "../gameObjects/gun.js";
 
-let background;
 let currentLevel = "1"; // 😀 Track the current level
 const cutscenesPlayed = {}; // 😀 Track cutscenes played during the current instance
 
@@ -47,17 +46,15 @@ function gameLoop(totalRunningTime) {
     if (global.levelComplete === true) {
         if (currentLevel === "1") {
             document.getElementById("levelCompleteScreen").style.display = "flex";
-            console.log("Level 1 complete");
+            new global.audio("./audio/level-passed.mp3");
             levelManager.level1Complete = true;
             return;
         } else if (currentLevel === "2") {
-            console.log("Level 2 complete");
             levelManager.level2Complete = true;
-            playCutscene("../CutScenes/CutScene2.mp4");
+            playCutscene("./cutScene/cutScene2.mp4");
             return;
         } else if (currentLevel === "3") {
-            console.log("Level 3 complete");
-            playCutscene("../CutScenes/CutScene3.mp4");
+            playCutscene("./cutScene/cutScene3.mp4");
             return;
         }
     }
@@ -322,7 +319,7 @@ function filterVisibleObjects() {
     global.visibleGameObjects = global.allGameObjects.filter(obj => {
         const dx = Math.abs(obj.x - global.playerObject.x);
         const dy = Math.abs(obj.y - global.playerObject.y);
-        return dx <= 1100 && dy <= 720;
+        return dx <= 1100 && dy <= 550;
     });
 }
 
@@ -362,14 +359,16 @@ function playCutscene(cutsceneSrc) {
             gameContainer.style.display = "flex";
             skipButton.style.display = "none";
             document.getElementById("levelCompleteScreen").style.display = "flex";
+            new global.audio("./audio/level-passed.mp3");
         }
         else if (currentLevel === "3") {
+            document.getElementById("levelCompleteImage").src = "./images/gameComplete.png";
             cutsceneElement.style.display = "none";
             gameContainer.style.display = "flex";
             skipButton.style.display = "none";
             document.getElementById("nextLevelBtn").style.display = "none";
             document.getElementById("levelCompleteScreen").style.display = "flex";
-            global.audio("./audio/level-passed.mp3");
+            new global.audio("./audio/level-passed.mp3");
         };
     }
 
@@ -385,7 +384,7 @@ function levelSelect() {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get("level") === "1") {
         if (!cutscenesPlayed["CutScene1.mp4"]) {
-            playCutscene("../CutScenes/CutScene1.mp4");
+            playCutscene("./cutScene/CutScene1.mp4");
         } else {
             setupGame1();
         }

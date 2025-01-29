@@ -26,12 +26,7 @@ class Player extends BaseGameObject {
         "lastSpriteIndex": 0,
         "currentSpriteIndex": 0
     };
-    reactToCollision = function (collidingObject) {
-        if (collidingObject.name == "Monster") {
-            console.log("Player collided with Monster");
-            global.gameOver = true;
-        }
-    }
+
 
     update = function () {
         this.x += this.xVelocity * global.deltaTime;
@@ -41,9 +36,8 @@ class Player extends BaseGameObject {
         document.getElementById("PositionDisplay").innerHTML = "X:" + Math.floor(global.playerObject.x) + " Y:" + Math.floor(global.playerObject.y);
 
 
-        if (global.playerObject.x > 500) {
+        if (global.playerObject.x > 9000) {
             global.levelComplete = true;
-            console.log("Level 1 Complete");
 
         }
         if (global.playerObject.y > 3000) {

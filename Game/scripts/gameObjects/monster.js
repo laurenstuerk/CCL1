@@ -17,7 +17,7 @@ class Monster extends BaseGameObject {
 
     reactToCollision = function (collidingObject) {
         if (collidingObject.name == "Player") {
-            console.log("Player collided with Monster");
+            new global.audio("./audio/eatenByMonster.mp3");
             global.gameOver = true;
         }
     }

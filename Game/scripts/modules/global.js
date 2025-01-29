@@ -4,6 +4,7 @@ global.ctx = canvas.getContext("2d");
 global.prevTotalRunningTime = 0;
 global.deltaTime = 0;
 global.allGameObjects = [];
+global.visibleGameObjects = [];
 global.playerObject = {};
 global.gravityForce = 9.8;
 global.pixelToMeter = 100;
@@ -14,14 +15,9 @@ global.camera = {
 global.ScrollPostRight = 300;
 global.ScrollPostTop = 200;
 global.ScrollPostBottom = 300;
-global.visibleGameObjects = [];
-global.playerObject.canShoot = false;
 // Game Progress
-global.level1Complete = false;
-global.level2Complete = false;
 global.gameOver = false;
 global.levelComplete = false;
-
 
 
 global.getCanvasBounds = function () {
@@ -63,17 +59,7 @@ global.detectBoxCollision = function (gameObject1, gameObject2) {
 }
 
 global.audio = function(src) {
-    if (!global.gameOver) {
-        new Audio(src).play();
-    }
+    new Audio(src).play();
 }
-
-// global.levelComplete = function () {
-//     global.level1Complete = true;
-//     global.audio("sounds/levelComplete.mp3");
-//     // document.getElementById("levelComplete").style.display = "block";
-// }   
-
-
 
 export { global }
