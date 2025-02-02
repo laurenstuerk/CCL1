@@ -59,9 +59,6 @@ function gameLoop(totalRunningTime) {
         }
     }
 
-    // background.update();
-    // background.draw(global.ctx);
-
     global.deltaTime = totalRunningTime - global.prevTotalRunningTime; // Time in milliseconds between frames
     global.deltaTime /= 1000; // Convert milliseconds to seconds for consistency in calculations
     global.prevTotalRunningTime = totalRunningTime; // Save the current state of "totalRunningTime", so at the next call of gameLoop (== next frame) to calculate deltaTime again for that next frame.
@@ -82,12 +79,8 @@ function gameLoop(totalRunningTime) {
     }
 
     filterVisibleObjects();
-    // console.log(global.visibleGameObjects)
-
     global.ctx.save();
     global.ctx.translate(-global.camera.x, global.camera.y);
-    // global.ctx.drawImage()
-
 
     for (let i = 0; i < global.visibleGameObjects.length; i++) {
         const obj = global.visibleGameObjects[i];
@@ -101,7 +94,6 @@ function gameLoop(totalRunningTime) {
     }
     global.ctx.restore()
     requestAnimationFrame(gameLoop);
-    // global.cancelAnimationFrame = requestAnimationFrame(gameLoop); // This keeps the gameLoop running indefinitely
 }
 
 function setupGame1(reset = false) {
@@ -319,7 +311,7 @@ function filterVisibleObjects() {
     global.visibleGameObjects = global.allGameObjects.filter(obj => {
         const dx = Math.abs(obj.x - global.playerObject.x);
         const dy = Math.abs(obj.y - global.playerObject.y);
-        return dx <= 1100 && dy <= 550;
+        return dx <= 1100 && dy <= 600;
     });
 }
 
@@ -375,8 +367,6 @@ function playCutscene(cutsceneSrc) {
     cutsceneVideo.onended = () => {
         cutscenesPlayed[cutsceneKey] = true; // 😀 Mark cutscene as played
         endCutScene();
-        // levelManager.cutSceneElement1Watched = true;
-        // console.log(levelManager.cutSceneElement1Watched);
     };
 }
 

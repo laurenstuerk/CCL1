@@ -2,11 +2,10 @@
 
 ### [🔗 Click here to play!](https://laurenstuerk.github.io/CCL1/)
 
-Embark on a beer-fueled quest to reclaim your stolen stash from the notorious Radler Gang.
+Embark on a beer-fueled quest to reclaim your stolen stash beer from the notorious Radler Gang.
 Explore, unlock new abilities, and defeat enemies to quench your thirst and restore order to the land.
 
-> **A Beer-Soaked Adventure!**  
-> Join our hero on an epic pixel-art platformer journey to reclaim his stolen beer from the villainous Radler Gang. Battle enemies, explore mysterious caves, and uncover the divine power of the Holy Draught!
+Join our hero on an epic pixel platformer journey!🧔
 
 ---
 
@@ -22,8 +21,7 @@ Along the way, he discovers the legendary **Holy Draught**, meets **God**, and i
 
 ✔️ Classic **2D pixel platformer** action!  
 ✔️ A variety of **enemies, traps, and obstacles** to overcome.  
-✔️ **Explore** caves, factories, and sacred lands in your quest for beer.  
-✔️ **Humorous cutscenes** featuring beer gods and pure adventure.
+✔️ **Humorous cutscenes** featuring beer god and pure adventure.
 
 ---
 
@@ -31,41 +29,37 @@ Along the way, he discovers the legendary **Holy Draught**, meets **God**, and i
 
 ### Main Gameplay:
 
-![alt text](startScreen.png)
-
-![Gameplay Screenshot](./assets/gameplay.png)
-
-Figure 1: Gameplay screenshot
-
 <div>
-    <img src="bathtub.png" width="50%">
-    <p>Gameplay screenshot.</p>
+    <img src="./assets/startScreen.png" width="40%">
+    <p>Main Menu</p>
+    <img src="./assets/gameplay.png" width="40%">
+    <p>Gameplay screenshot</p> 
+    <img src="bathtub.png" width="40%">
+    <p>Game Over</p>
 </div>
-
----
-
-### The Holy Beer:
-
-![Holy Draught Screenshot](assets/beer.gif)  
-
 
 ## 🎨 Art & Sprites
 
 ### Main Character:
 
 <div>
-    <img src="https://raw.githubusercontent.com/laurenstuerk/CCL1/refs/heads/main/assets/ezgif-6b446e9f4df76.gif" alt="Player Spritesheet">
-    <img src="https://raw.githubusercontent.com/laurenstuerk/CCL1/refs/heads/main/assets/ezgif.com-animated-gif-maker.gif" alt="Player Spritesheet">
+    <img src="https://raw.githubusercontent.com/laurenstuerk/CCL1/refs/heads/main/assets/ezgif-6b446e9f4df76.gif">
+    <img src="https://raw.githubusercontent.com/laurenstuerk/CCL1/refs/heads/main/assets/ezgif.com-animated-gif-maker.gif">
 </div>
 
-### GungTower: Monster:
 <div>
-    <img src="assets/guntower.gif" width="50%">
-    <img src="assets/monster.gif" width="49%">
-    <img src="Game/images/spike.png" width="49%">
-    <img src="Game/images/landmine.png" width="10%">
-    <img src="Game/images/gun.png" width="50%">
-    
+    <img src="assets/guntower.gif">
+        <p>Guntower</p>
+    <img src="assets/monster.gif">
+            <p>Monster</p>
+        <img src="assets/beer.gif">
+            <p>Holy Beer</p>
+    <img src="Game/images/spike.png">
+            <p>Spike</p>
+    <img src="Game/images/landmine.png">
+            <p>Mine</p>
+    <img src="Game/images/gun.png">
+            <p>Gun</p>  
 </div>
 
 ---
@@ -92,17 +86,16 @@ Figure 1: Gameplay screenshot
 
 ### What Went Well
 
-✔ The pixel-art style and comedic theme made the game fun and engaging.  
-✔ The cutscenes added a unique storytelling touch, making the journey more immersive.  
-✔ Implementing all game game objects
+✔ **The pixel-art** style and comedic theme made the game fun and engaging.  
+✔ **The cutscenes** added a nice storytelling touch.
+✔ Implementing all game game objects           
 
 ### Challenges Faced
 
-⚠️ Tweaking movement physics to feel responsive and smooth.
-
-⚠️ Level Management to switch between levels and watch corresponding Cutscene
-
-⚠️ 
+⚠️ **Tweaking movement** physics to feel responsive and smooth
+⚠️ **Level Management** to switch between levels and watch corresponding Cutscene
+⚠️ **Debugging** unexpected player interactions and collisions.
+⚠️ **Creating enough variety** in levels while keeping the core mechanics engaging.
 
 
 ### Lessons Learned
@@ -110,15 +103,17 @@ Figure 1: Gameplay screenshot
 📌 **Keep it simple!** Focus on a strong core mechanic rather than overcomplicating features.  
 📌 **Story matter!** Even a silly story becomes immersive with good pacing and visuals.  
 📌 **Humor and gameplay go hand in hand.** A unique theme makes a game stand out.
+📌 **Music and sound effects** play a huge role in setting the game’s mood.
 
 ---
 
-## 🍹 Final Words
-
-**Beer** was a blast to create! I hope you enjoy playing it as much as i enjoyed making it. Now go forth, reclaim the beer, and **let it rain!** 🍺🎉
 
 ### 🌀 3D Model Preview
 
 [![](assets/player.gif)](https://sketchfab.com/3d-models/character-af271d4f37f84bbfb3186c1beb5ff872)
 
 🔗 [Click to view the interactive 3D model on Sketchfab!](https://sketchfab.com/3d-models/character-af271d4f37f84bbfb3186c1beb5ff872)
+
+## 🍹 Final Words
+
+**Beer** was a blast to create! I hope you enjoy playing it as much as i enjoyed making it. Now go forth, reclaim the beer, and **let it rain!** 🍺🎉
